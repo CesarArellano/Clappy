@@ -1,0 +1,12 @@
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+  color: '#ffffff'
+  image: 'assets/icons/clappy-icon.png'
+  color_dark: '#18181a'
+  
+  android_12:
+    image: 'assets/icons/clappy-icon.png'
+    icon_background_color: '#ffffff'
+    icon_background_color_dark: '#18181a'

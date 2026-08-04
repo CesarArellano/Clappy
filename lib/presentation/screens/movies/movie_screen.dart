@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fog_edge_blur/fog_edge_blur.dart';
-import 'package:fog_edge_blur/fog_edge_child.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
@@ -45,20 +43,12 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
     }
 
     return Scaffold(
-      // No CustomAppbar here — this screen already has its own hero-image
-      // sliver header. Just the top-edge blur treatment, sized to match the
-      // same status-bar-plus-toolbar band CustomAppbar uses elsewhere.
-      body: FogEdgeBlur(
-        edgeAlign: EdgeAlign.top,
-        sigma: 20,
-        fogEdgeChild: FogEdgeChild(heightEdge: kToolbarHeight - 10),
-        child: CustomScrollView(
-          physics: const ClampingScrollPhysics(),
-          slivers: [
-            _CustomSliverAppbar(movie: movie),
-            SliverToBoxAdapter(child: _MovieDetails(movie: movie)),
-          ],
-        ),
+      body: CustomScrollView(
+        physics: const ClampingScrollPhysics(),
+        slivers: [
+          _CustomSliverAppbar(movie: movie),
+          SliverToBoxAdapter(child: _MovieDetails(movie: movie)),
+        ],
       ),
     );
   }
@@ -425,48 +415,50 @@ class _CastCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
 
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      color: isDarkTheme ? Colors.black38 : Colors.white,
-      elevation: 6,
-      child: InkWell(
-        onTap: () => context.push('/home/0/person/${actor.id}'),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: AppNetworkImage(
-                imageUrl: actor.profilePath,
-                width: double.infinity,
-                height: 170,
-                cacheWidth: 150,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Flexible(
-              child: Text(
-                actor.name,
-                maxLines: 1,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Flexible(
-              child: Text(
-                actor.character.value(l10n.noCharacter),
-                maxLines: 2,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
+    return SizedBox(
+      width: 130,
+      child: Card(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
         ),
-      )
+        color: isDarkTheme ? Colors.black38 : Colors.white,
+        elevation: 6,
+        child: InkWell(
+          onTap: () => context.push('/home/0/person/${actor.id}'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: AppNetworkImage(
+                  imageUrl: actor.profilePath,
+                  height: 170,
+                  cacheWidth: 150,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Flexible(
+                child: Text(
+                  actor.name,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              Flexible(
+                child: Text(
+                  actor.character.value(l10n.noCharacter),
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+        )
+      ),
     );
   }
 }

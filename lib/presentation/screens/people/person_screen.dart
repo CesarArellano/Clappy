@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fog_edge_blur/fog_edge_blur.dart';
-import 'package:fog_edge_blur/fog_edge_child.dart';
 import 'package:intl/intl.dart';
 
 import '../../../config/extensions/null_extensions.dart';
@@ -41,20 +39,12 @@ class _PersonScreenState extends ConsumerState<PersonScreen> {
     }
 
     return Scaffold(
-      // No CustomAppbar here — this screen already has its own hero-image
-      // sliver header. Just the top-edge blur treatment, sized to match the
-      // same status-bar-plus-toolbar band CustomAppbar uses elsewhere.
-      body: FogEdgeBlur(
-        edgeAlign: EdgeAlign.top,
-        sigma: 20,
-        fogEdgeChild: FogEdgeChild(heightEdge: kToolbarHeight - 10),
-        child: CustomScrollView(
-          physics: const ClampingScrollPhysics(),
-          slivers: [
-            _CustomSliverAppbar(person: person),
-            SliverToBoxAdapter(child: _PersonDetails(person: person)),
-          ],
-        ),
+      body: CustomScrollView(
+        physics: const ClampingScrollPhysics(),
+        slivers: [
+          _CustomSliverAppbar(person: person),
+          SliverToBoxAdapter(child: _PersonDetails(person: person)),
+        ],
       ),
     );
   }

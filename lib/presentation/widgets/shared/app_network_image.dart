@@ -51,8 +51,8 @@ class AppNetworkImage extends StatelessWidget {
 
     return CachedNetworkImage(
       imageUrl: imageUrl,
-      width: width,
-      height: height,
+      width: (width != null && width!.isInfinite) ? null : width,
+      height: (height != null && height!.isInfinite) ? null : height,
       fit: fit,
       memCacheWidth: cacheW,
       memCacheHeight: cacheW == null ? cacheH : null,
