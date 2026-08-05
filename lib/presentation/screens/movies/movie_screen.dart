@@ -42,12 +42,14 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
     }
 
     return Scaffold(
-      body: CustomScrollView(
-        physics: const ClampingScrollPhysics(),
-        slivers: [
-          _CustomSliverAppbar(movie: movie),
-          SliverToBoxAdapter(child: _MovieDetails(movie: movie)),
-        ],
+      body: TopEdgeBlur(
+        child: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
+          slivers: [
+            _CustomSliverAppbar(movie: movie),
+            SliverToBoxAdapter(child: _MovieDetails(movie: movie)),
+          ],
+        ),
       ),
     );
   }

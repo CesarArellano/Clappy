@@ -13,14 +13,8 @@ import 'presentation/providers/providers.dart';
 
 void main() async {
   await dotenv.load();
-
-  // Preload persisted preferences before the first frame builds — otherwise
-  // HomeView's synchronous initState() fires its initial API calls before
-  // the async SharedPreferences read resolves, so the very first NetworkService
-  // (and every list it loads) gets built with the default language, and
-  // nothing re-triggers those loads once the real preference arrives.
   final settingsRepository = SettingsRepositoryImpl(
-    SharedPreferencesDatasource(),
+    datasource: SharedPreferencesDatasource(),
   );
   final initialThemePreference = await settingsRepository.getThemePreference();
   final initialAppLanguage = await settingsRepository.getAppLanguage();

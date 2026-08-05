@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:clappy/presentation/widgets/shared/cast_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -12,8 +11,7 @@ import '../../../domain/entities/tv_show.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../providers/series/series_cast_provider.dart';
 import '../../providers/series/series_info_provider.dart';
-import '../../widgets/shared/app_network_image.dart';
-import '../../widgets/shared/skeleton_placeholders.dart';
+import '../../widgets/widgets.dart';
 
 class SeriesScreen extends ConsumerStatefulWidget {
   const SeriesScreen({super.key, required this.seriesId});
@@ -47,15 +45,14 @@ class _SeriesScreenState extends ConsumerState<SeriesScreen> {
     }
 
     return Scaffold(
-      // No CustomAppbar here — this screen already has its own hero-image
-      // sliver header. Just the top-edge blur treatment, sized to match the
-      // same status-bar-plus-toolbar band CustomAppbar uses elsewhere.
-      body: CustomScrollView(
-        physics: const ClampingScrollPhysics(),
-        slivers: [
-          _CustomSliverAppbar(series: series),
-          SliverToBoxAdapter(child: _SeriesDetails(series: series)),
-        ],
+      body: TopEdgeBlur(
+        child: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
+          slivers: [
+            _CustomSliverAppbar(series: series),
+            SliverToBoxAdapter(child: _SeriesDetails(series: series)),
+          ],
+        ),
       ),
     );
   }

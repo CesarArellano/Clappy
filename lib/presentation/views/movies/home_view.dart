@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clappy/config/extensions/date_time_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,6 +31,7 @@ class _HomeViewState extends ConsumerState<HomeView>
   Widget build(BuildContext context) {
     super.build(context);
     final l10n = AppLocalizations.of(context)!;
+    final todaySubtitle = DateTime.now().weekdayDayLabel(l10n.localeName);
     final initialLoading = ref.watch(initialLoadingProvider);
 
     if (initialLoading) {
@@ -74,7 +76,7 @@ class _HomeViewState extends ConsumerState<HomeView>
               ContentType.movies => [
                 MovieHorizontalListview(
                   title: l10n.inTheaters,
-                  subtitle: l10n.mondaySubtitle,
+                  subtitle: todaySubtitle,
                   movies: nowPlayingMovies,
                   loadNextPage: () => ref
                       .read(nowPlayingMoviesProvider.notifier)

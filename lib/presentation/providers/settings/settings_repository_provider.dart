@@ -5,5 +5,5 @@ import '../../../infrastructure/repositories/settings_repository_impl.dart';
 
 // Inmutable Repository
 final settingsRepositoryProvider = Provider<SettingsRepositoryImpl>((ref) {
-  return SettingsRepositoryImpl(SharedPreferencesDatasource());
+  return SettingsRepositoryImpl(datasource: SharedPreferencesDatasource());
 });

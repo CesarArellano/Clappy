@@ -10,7 +10,7 @@ class AppTheme {
   ThemeData _themeFor(Brightness brightness) {
     return ThemeData(
       useMaterial3: true,
-      colorSchemeSeed: Colors.blueAccent,
+      colorSchemeSeed: Colors.pinkAccent,
       brightness: brightness,
       splashFactory: InkSparkle.splashFactory,
     );

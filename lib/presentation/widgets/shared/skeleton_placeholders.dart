@@ -328,15 +328,19 @@ class HomeContentSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        Skeletonizer.zone(
-          child: Row(
-            children: [
-              Bone(width: 82, height: 32, uniRadius: 16),
-              SizedBox(width: 8),
-              Bone(width: 82, height: 32, uniRadius: 16),
-            ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Skeletonizer.zone(
+            child: Row(
+              children: [
+                Bone(width: 82, height: 32, uniRadius: 8),
+                SizedBox(width: 8),
+                Bone(width: 82, height: 32, uniRadius: 8),
+              ],
+            ),
           ),
         ),
         const SizedBox(height: 8),

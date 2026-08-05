@@ -4,8 +4,8 @@ import '../../domain/repositories/settings_repository.dart';
 import '../datasources/shared_preferences_datasource.dart';
 
 class SettingsRepositoryImpl implements SettingsRepository {
-  SettingsRepositoryImpl(this.datasource);
-
+  
+  SettingsRepositoryImpl({required this.datasource});
   final SharedPreferencesDatasource datasource;
 
   @override

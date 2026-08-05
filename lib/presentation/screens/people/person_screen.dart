@@ -39,12 +39,14 @@ class _PersonScreenState extends ConsumerState<PersonScreen> {
     }
 
     return Scaffold(
-      body: CustomScrollView(
-        physics: const ClampingScrollPhysics(),
-        slivers: [
-          _CustomSliverAppbar(person: person),
-          SliverToBoxAdapter(child: _PersonDetails(person: person)),
-        ],
+      body: TopEdgeBlur(
+        child: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
+          slivers: [
+            _CustomSliverAppbar(person: person),
+            SliverToBoxAdapter(child: _PersonDetails(person: person)),
+          ],
+        ),
       ),
     );
   }

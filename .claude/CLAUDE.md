@@ -90,6 +90,10 @@ pattern — attach per-type/per-variant behavior directly to a value instead of 
 runtime swapping. See the **`dart-use-extensions-for-strategy`** skill for when this applies vs.
 sealed-class pattern matching vs. a real interface-based Strategy (e.g. `NetworkService` itself,
 which *is* injected and needs to stay swappable/mockable).
+- For reusable type-specific formatting, prefer a focused extension under `lib/config/extensions/`
+  instead of a private view helper. Example from home content: use a `DateTime` extension such as
+  `DateTime.now().weekdayDayLabel(l10n.localeName)` backed by `intl.DateFormat`, so localized labels
+  stay reusable and the widget call site remains declarative.
 
 ### State management (Riverpod)
 
