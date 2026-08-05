@@ -7,6 +7,7 @@ import '../../../domain/entities/movie_credit.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../providers/providers.dart';
 import '../shared/cast_card.dart';
+import '../shared/skeleton_placeholders.dart';
 
 final personMovieCreditsProvider = FutureProvider.family((ref, int personId) {
   final peopleRepository = ref.watch(peopleRepositoryProvider);
@@ -27,8 +28,7 @@ class PersonMovieCredits extends ConsumerWidget {
       error: (_, _) => Center(
         child: Text(AppLocalizations.of(context)!.couldNotLoadContent),
       ),
-      loading: () =>
-          const Center(child: CircularProgressIndicator(strokeWidth: 2)),
+      loading: () => const CastListSkeleton(titleWidth: 94),
     );
   }
 }

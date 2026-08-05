@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import '../../../config/helpers/human_formats.dart';
 import '../../../domain/entities/tv_show.dart';
 import '../shared/app_network_image.dart';
+import '../shared/skeleton_placeholders.dart';
 
 class SeriesHorizontalListview extends StatefulWidget {
   const SeriesHorizontalListview({
@@ -66,6 +67,13 @@ class _SeriesHorizontalListviewState extends State<SeriesHorizontalListview> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.series.isEmpty) {
+      return HorizontalContentSkeleton(
+        title: widget.title,
+        subtitle: widget.subtitle,
+      );
+    }
+
     return SizedBox(
       height: 325,
       child: Column(
@@ -74,16 +82,13 @@ class _SeriesHorizontalListviewState extends State<SeriesHorizontalListview> {
             _Header(title: widget.title, subtitle: widget.subtitle),
           const SizedBox(height: 5),
           Expanded(
-            child: widget.series.isEmpty
-                ? const Center(child: CircularProgressIndicator(strokeWidth: 2))
-                : ListView.builder(
-                    controller: scrollController,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: widget.series.length,
-                    itemBuilder: (context, index) => FadeInRight(
-                      child: _Slide(series: widget.series[index]),
-                    ),
-                  ),
+            child: ListView.builder(
+              controller: scrollController,
+              scrollDirection: Axis.horizontal,
+              itemCount: widget.series.length,
+              itemBuilder: (context, index) =>
+                  FadeInRight(child: _Slide(series: widget.series[index])),
+            ),
           ),
         ],
       ),
@@ -152,7 +157,11 @@ class _Slide extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-          Text(series.name.nonNullValue(), maxLines: 2, style: textTheme.titleSmall),
+          Text(
+            series.name.nonNullValue(),
+            maxLines: 2,
+            style: textTheme.titleSmall,
+          ),
           Row(
             children: [
               Icon(Icons.star_half_outlined, color: Colors.yellow.shade800),

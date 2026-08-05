@@ -35,7 +35,7 @@ class _PersonScreenState extends ConsumerState<PersonScreen> {
     final Person? person = ref.watch(personInfoProvider)[widget.personId];
 
     if (person == null) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return const DetailScreenSkeleton(heroHeightFactor: 0.5);
     }
 
     return Scaffold(
@@ -145,7 +145,9 @@ class _HeaderDetails extends StatelessWidget {
                 Text(person.name, style: textStyles.titleLarge),
                 const SizedBox(height: 4),
                 Text(
-                  person.knownForDepartment.nonNullValue(l10n.unknownDepartment),
+                  person.knownForDepartment.nonNullValue(
+                    l10n.unknownDepartment,
+                  ),
                   style: textStyles.titleSmall,
                 ),
                 const SizedBox(height: 8),

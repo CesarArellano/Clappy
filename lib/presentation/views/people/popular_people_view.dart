@@ -20,7 +20,7 @@ class PopularPeopleViewState extends ConsumerState<PopularPeopleView>
     final popularPeople = ref.watch(popularPeopleProvider);
 
     if (popularPeople.isEmpty) {
-      return const Center(child: CircularProgressIndicator(strokeWidth: 2));
+      return const MasonrySkeleton();
     }
 
     return PersonMasonry(

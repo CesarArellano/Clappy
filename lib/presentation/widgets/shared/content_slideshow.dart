@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 
 import '../../providers/providers.dart';
 import 'app_network_image.dart';
+import 'skeleton_placeholders.dart';
 
 class _SlideItem {
   const _SlideItem({
@@ -120,10 +121,7 @@ class _ContentSlideshowState extends ConsumerState<ContentSlideshow> {
     final slides = _watchSlides();
 
     if (slides.isEmpty) {
-      return const SizedBox(
-        height: 240,
-        child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
-      );
+      return const SlideshowSkeleton();
     }
 
     return SizedBox(

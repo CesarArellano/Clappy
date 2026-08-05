@@ -63,8 +63,11 @@ class _VideosList extends StatelessWidget {
 
         //* Si se desean mostrar todos los videos
         // ...videos.map(
-        //   (video) => _YouTubeVideoPlayer(youtubeId: videos.first.youtubeKey, name: video.name)
-        // ).toList()
+        //   (video) => _YouTubeVideoPlayer(
+        //     youtubeId: video.youtubeKey,
+        //     name: video.name,
+        //   ),
+        // ),
       ],
     );
   }

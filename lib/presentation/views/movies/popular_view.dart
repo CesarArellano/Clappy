@@ -38,7 +38,7 @@ class _PopularMovies extends ConsumerWidget {
     final popularMovies = ref.watch(popularMoviesProvider);
 
     if (popularMovies.isEmpty) {
-      return const Center(child: CircularProgressIndicator(strokeWidth: 2));
+      return MasonrySkeleton(topPadding: topPadding);
     }
 
     return MovieMasonry(

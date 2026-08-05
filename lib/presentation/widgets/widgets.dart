@@ -15,4 +15,5 @@ export 'package:clappy/presentation/widgets/shared/custom_bottom_navigation_bar.
 export 'package:clappy/presentation/widgets/shared/empty_container.dart';
 export 'package:clappy/presentation/widgets/shared/full_screen_loader.dart';
 export 'package:clappy/presentation/widgets/shared/cast_card.dart';
+export 'package:clappy/presentation/widgets/shared/skeleton_placeholders.dart';
 export 'package:clappy/presentation/widgets/videos/videos_from_movie.dart';

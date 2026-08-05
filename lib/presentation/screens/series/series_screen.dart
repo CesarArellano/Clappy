@@ -13,6 +13,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../providers/series/series_cast_provider.dart';
 import '../../providers/series/series_info_provider.dart';
 import '../../widgets/shared/app_network_image.dart';
+import '../../widgets/shared/skeleton_placeholders.dart';
 
 class SeriesScreen extends ConsumerStatefulWidget {
   const SeriesScreen({super.key, required this.seriesId});
@@ -42,7 +43,7 @@ class _SeriesScreenState extends ConsumerState<SeriesScreen> {
     final TvShow? series = ref.watch(seriesInfoProvider)[widget.seriesId];
 
     if (series == null) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return const DetailScreenSkeleton();
     }
 
     return Scaffold(
@@ -50,12 +51,12 @@ class _SeriesScreenState extends ConsumerState<SeriesScreen> {
       // sliver header. Just the top-edge blur treatment, sized to match the
       // same status-bar-plus-toolbar band CustomAppbar uses elsewhere.
       body: CustomScrollView(
-          physics: const ClampingScrollPhysics(),
-          slivers: [
-            _CustomSliverAppbar(series: series),
-            SliverToBoxAdapter(child: _SeriesDetails(series: series)),
-          ],
-        ),
+        physics: const ClampingScrollPhysics(),
+        slivers: [
+          _CustomSliverAppbar(series: series),
+          SliverToBoxAdapter(child: _SeriesDetails(series: series)),
+        ],
+      ),
     );
   }
 }
@@ -343,7 +344,7 @@ class _SeriesCast extends ConsumerWidget {
     final cast = ref.watch(castBySeriesProvider)[seriesId] ?? [];
 
     if (cast.isEmpty) {
-      return const Center(child: CircularProgressIndicator());
+      return const CastListSkeleton();
     }
 
     return Column(
@@ -370,15 +371,13 @@ class _SeriesCast extends ConsumerWidget {
                 subtitle: actor.character.nonNullValue(l10n.noCharacter),
                 photoPath: actor.profilePath.nonNullValue(),
               );
-            }
+            },
           ),
         ),
       ],
     );
   }
 }
-
-
 
 class _LastSeason extends StatelessWidget {
   const _LastSeason({required this.season});
@@ -453,7 +452,9 @@ class _LastSeason extends StatelessWidget {
                           Text('${airDate.year}', style: textTheme.bodyMedium),
                         const SizedBox(width: 8),
                         Text(
-                          l10n.episodesCount(season.episodeCount.nonNullValue()),
+                          l10n.episodesCount(
+                            season.episodeCount.nonNullValue(),
+                          ),
                           style: textTheme.bodyMedium,
                         ),
                       ],

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../config/helpers/image_cache_dimensions.dart';
+import 'skeleton_placeholders.dart';
 
 /// Standard network image treatment used everywhere in the app: caches to
 /// disk+memory, decodes only the pixels actually needed (via [cacheDimension]),
@@ -57,7 +58,8 @@ class AppNetworkImage extends StatelessWidget {
       memCacheWidth: cacheW,
       memCacheHeight: cacheW == null ? cacheH : null,
       fadeInDuration: const Duration(milliseconds: 200),
-      placeholder: (context, url) => const ColoredBox(color: Colors.black12),
+      placeholder: (context, url) =>
+          AppImageSkeleton(width: width, height: height),
       errorWidget: (context, url, error) => Center(
         child: Icon(
           Icons.broken_image_outlined,

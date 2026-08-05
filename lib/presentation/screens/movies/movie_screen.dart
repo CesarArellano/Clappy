@@ -38,7 +38,7 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
     final Movie? movie = ref.watch(movieInfoProvider)[widget.movieId];
 
     if (movie == null) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return const DetailScreenSkeleton();
     }
 
     return Scaffold(
@@ -69,7 +69,9 @@ class _CustomSliverAppbar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
 
-    final isFavoriteFuture = ref.watch(isFavoriteProvider(movie.id.nonNullValue()));
+    final isFavoriteFuture = ref.watch(
+      isFavoriteProvider(movie.id.nonNullValue()),
+    );
 
     return SliverAppBar(
       foregroundColor: Colors.white,
@@ -392,7 +394,7 @@ class _ActorsByMovie extends ConsumerWidget {
     final actors = ref.watch(actorsByMovieProvider)[movieId] ?? [];
 
     if (actors.isEmpty) {
-      return const Center(child: CircularProgressIndicator());
+      return CastListSkeleton(titleWidth: 70);
     }
 
     return SizedBox(

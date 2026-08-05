@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import '../../../config/helpers/human_formats.dart';
 import '../../../domain/entities/movie.dart';
 import '../shared/app_network_image.dart';
+import '../shared/skeleton_placeholders.dart';
 
 class MovieHorizontalListview extends StatefulWidget {
   const MovieHorizontalListview({
@@ -48,6 +49,13 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.movies.isEmpty) {
+      return HorizontalContentSkeleton(
+        title: widget.title,
+        subtitle: widget.subtitle,
+      );
+    }
+
     return SizedBox(
       height: 325,
       child: Column(
@@ -131,7 +139,11 @@ class _Slide extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-          Text(movie.title.nonNullValue(), maxLines: 2, style: textTheme.titleSmall),
+          Text(
+            movie.title.nonNullValue(),
+            maxLines: 2,
+            style: textTheme.titleSmall,
+          ),
           Row(
             children: [
               Icon(Icons.star_half_outlined, color: Colors.yellow.shade800),

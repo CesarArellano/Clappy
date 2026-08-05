@@ -25,8 +25,9 @@ class SimilarMovies extends ConsumerWidget {
       error: (_, _) => Center(
         child: Text(AppLocalizations.of(context)!.couldNotLoadContent),
       ),
-      loading: () =>
-          const Center(child: CircularProgressIndicator(strokeWidth: 2)),
+      loading: () => HorizontalContentSkeleton(
+        title: AppLocalizations.of(context)!.recommendations,
+      ),
     );
   }
 }

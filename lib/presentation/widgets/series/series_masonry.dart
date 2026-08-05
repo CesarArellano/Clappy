@@ -61,7 +61,7 @@ class _SeriesMasonryState extends State<SeriesMasonry> {
   @override
   Widget build(BuildContext context) {
     if (widget.series.isEmpty) {
-      return const Center(child: CircularProgressIndicator(strokeWidth: 2));
+      return MasonrySkeleton(topPadding: widget.topPadding);
     }
 
     return MasonryGridView.count(
