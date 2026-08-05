@@ -89,4 +89,14 @@ class TvMovieDbDatasource implements SeriesDatasource {
         .map((actor) => ActorMapper.castToEntity(actor))
         .toList();
   }
+
+  @override
+  Future<List<TvShow>> searchSeries(String query) async {
+    final response = await networkService.get(
+      '/search/tv',
+      queryParameters: {'query': query},
+    );
+
+    return _jsonToTvShows(response.data);
+  }
 }

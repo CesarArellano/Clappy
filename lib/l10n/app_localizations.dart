@@ -125,7 +125,7 @@ abstract class AppLocalizations {
   /// No description provided for @searchFieldHint.
   ///
   /// In en, this message translates to:
-  /// **'Search movie'**
+  /// **'Search...'**
   String get searchFieldHint;
 
   /// No description provided for @preferencesTooltip.

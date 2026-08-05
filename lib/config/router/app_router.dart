@@ -41,6 +41,11 @@ final appRouter = GoRouter(
           name: PreferencesScreen.name,
           builder: (_, state) => const PreferencesScreen(),
         ),
+        GoRoute(
+          path: 'search',
+          name: SearchScreen.name,
+          builder: (_, state) => const SearchScreen(),
+        ),
       ],
     ),
     GoRoute(path: '/', redirect: (_, _) => '/home/0'),

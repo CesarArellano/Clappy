@@ -37,4 +37,9 @@ class SeriesRepositoryImpl implements SeriesRepository {
   Future<List<Actor>> getCastBySeries(String seriesId) {
     return datasource.getCastBySeries(seriesId);
   }
+
+  @override
+  Future<List<TvShow>> searchSeries(String query) {
+    return datasource.searchSeries(query);
+  }
 }

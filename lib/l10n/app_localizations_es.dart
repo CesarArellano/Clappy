@@ -21,7 +21,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get navFavorites => 'Favoritos';
 
   @override
-  String get searchFieldHint => 'Buscar película';
+  String get searchFieldHint => 'Busca...';
 
   @override
   String get preferencesTooltip => 'Preferencias';

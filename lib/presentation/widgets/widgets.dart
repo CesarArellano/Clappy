@@ -5,6 +5,7 @@ export 'package:clappy/presentation/widgets/movies/similar_movies.dart';
 export 'package:clappy/presentation/widgets/people/person_card.dart';
 export 'package:clappy/presentation/widgets/people/person_masonry.dart';
 export 'package:clappy/presentation/widgets/people/person_movie_credits.dart';
+export 'package:clappy/presentation/widgets/search/search_result_item.dart';
 export 'package:clappy/presentation/widgets/series/series_horizontal_listview.dart';
 export 'package:clappy/presentation/widgets/series/series_masonry.dart';
 export 'package:clappy/presentation/widgets/series/series_poster_link.dart';

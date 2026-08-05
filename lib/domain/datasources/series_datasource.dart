@@ -12,4 +12,6 @@ abstract class SeriesDatasource {
   Future<TvShow> getSeriesById(String id);
 
   Future<List<Actor>> getCastBySeries(String seriesId);
+
+  Future<List<TvShow>> searchSeries(String query);
 }

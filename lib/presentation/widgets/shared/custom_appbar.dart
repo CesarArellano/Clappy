@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../domain/entities/movie.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../delegates/search_movie_delegate.dart';
-import '../../providers/providers.dart';
 
 class CustomAppbar extends ConsumerWidget {
   const CustomAppbar({super.key});
@@ -15,7 +12,7 @@ class CustomAppbar extends ConsumerWidget {
   static double height(BuildContext context) {
     return kToolbarHeight + MediaQuery.of(context).padding.top;
   }
-  
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
@@ -39,27 +36,7 @@ class CustomAppbar extends ConsumerWidget {
                   Text('Clappy', style: titleStyle),
                   const Spacer(),
                   IconButton(
-                    onPressed: () {
-                      final searchedMovies = ref.read(searchedMoviesProvider);
-                      final searchQuery = ref.read(searchQueryProvider);
-
-                      showSearch<Movie?>(
-                        query: searchQuery,
-                        context: context,
-                        delegate: SearchMovieDelegate(
-                          initialMovies: searchedMovies,
-                          searchFieldHint: AppLocalizations.of(
-                            context,
-                          )!.searchFieldHint,
-                          searchMovies: ref
-                              .read(searchedMoviesProvider.notifier)
-                              .searchMoviesByQuery,
-                        ),
-                      ).then((movie) {
-                        if (movie == null || !context.mounted) return;
-                        context.push('/home/0/movie/${movie.id}');
-                      });
-                    },
+                    onPressed: () => context.push('/home/0/search'),
                     icon: const Icon(Icons.search),
                   ),
                   IconButton(
