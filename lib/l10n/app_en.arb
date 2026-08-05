@@ -74,6 +74,8 @@
   "languageLabel": "Language",
   "lightLabel": "Light",
   "darkLabel": "Dark",
+  "systemLabel": "System",
+  
   "englishLabel": "English",
   "spanishLabel": "Español"
 }

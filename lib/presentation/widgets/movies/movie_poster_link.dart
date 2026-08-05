@@ -20,7 +20,7 @@ class MoviePosterLink extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: AppNetworkImage(
-            imageUrl: movie.posterPath.value(),
+            imageUrl: movie.posterPath.nonNullValue(),
             width: MediaQuery.sizeOf(context).width / 3,
           ),
         ),

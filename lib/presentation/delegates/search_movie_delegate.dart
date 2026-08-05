@@ -62,7 +62,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   void onQueryChanged(String query) {
     isLoadingStream.add(true);
-    if ((_debounceTimer?.isActive).value()) _debounceTimer?.cancel();
+    if ((_debounceTimer?.isActive).nonNullValue()) _debounceTimer?.cancel();
     _debounceTimer = Timer(const Duration(milliseconds: 400), () async {
       final movies = await searchMovies(query);
       initialMovies = movies;
@@ -78,7 +78,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
         initialData: false,
         stream: isLoadingStream.stream,
         builder: (context, snapshot) {
-          if (snapshot.data.value()) {
+          if (snapshot.data.nonNullValue()) {
             return SpinPerfect(
               spins: 10,
               infinite: true,
@@ -155,7 +155,7 @@ class _MovieItem extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: AppNetworkImage(
-                    imageUrl: movie.posterPath.value(),
+                    imageUrl: movie.posterPath.nonNullValue(),
                     width: 80,
                   ),
                 ),
@@ -169,13 +169,13 @@ class _MovieItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      movie.title.value(),
+                      movie.title.nonNullValue(),
                       style: textStyles.titleMedium,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      movie.overview.value(),
+                      movie.overview.nonNullValue(),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -186,7 +186,7 @@ class _MovieItem extends StatelessWidget {
                         const Icon(Icons.star, color: Colors.amber),
                         const SizedBox(width: 4),
                         Text(
-                          HumanFormats.number(movie.voteAverage.value(), 2),
+                          HumanFormats.number(movie.voteAverage.nonNullValue(), 2),
                           style: chipTextStyle,
                         ),
                       ],

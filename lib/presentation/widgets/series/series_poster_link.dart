@@ -20,7 +20,7 @@ class SeriesPosterLink extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: AppNetworkImage(
-            imageUrl: series.posterPath.value(),
+            imageUrl: series.posterPath.nonNullValue(),
             width: MediaQuery.sizeOf(context).width / 3,
           ),
         ),

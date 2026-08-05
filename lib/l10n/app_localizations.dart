@@ -458,6 +458,12 @@ abstract class AppLocalizations {
   /// **'Dark'**
   String get darkLabel;
 
+  /// No description provided for @systemLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get systemLabel;
+
   /// No description provided for @englishLabel.
   ///
   /// In en, this message translates to:

@@ -1,12 +1,12 @@
 import 'dart:async';
 
+import 'package:clappy/presentation/widgets/shared/cast_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../config/extensions/null_extensions.dart';
-import '../../../domain/entities/actor.dart';
 import '../../../domain/entities/tv_season.dart';
 import '../../../domain/entities/tv_show.dart';
 import '../../../l10n/app_localizations.dart';
@@ -46,6 +46,9 @@ class _SeriesScreenState extends ConsumerState<SeriesScreen> {
     }
 
     return Scaffold(
+      // No CustomAppbar here — this screen already has its own hero-image
+      // sliver header. Just the top-edge blur treatment, sized to match the
+      // same status-bar-plus-toolbar band CustomAppbar uses elsewhere.
       body: CustomScrollView(
           physics: const ClampingScrollPhysics(),
           slivers: [
@@ -74,7 +77,7 @@ class _CustomSliverAppbar extends StatelessWidget {
           children: [
             SizedBox.expand(
               child: AppNetworkImage(
-                imageUrl: series.backdropPath.value(),
+                imageUrl: series.backdropPath.nonNullValue(),
                 width: size.width,
                 height: size.height * 0.7,
               ),
@@ -134,7 +137,7 @@ class _SeriesDetails extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: AppNetworkImage(
-                  imageUrl: series.posterPath.value(),
+                  imageUrl: series.posterPath.nonNullValue(),
                   width: size.width * 0.3,
                 ),
               ),
@@ -151,7 +154,7 @@ class _SeriesDetails extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      series.originalName.value(),
+                      series.originalName.nonNullValue(),
                       style: textStyles.titleSmall,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
@@ -175,7 +178,7 @@ class _SeriesDetails extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        if (series.adult.value())
+                        if (series.adult.nonNullValue())
                           Chip(
                             backgroundColor: Colors.red,
                             label: Text(l10n.adultTag, style: chipTextStyle),
@@ -216,7 +219,7 @@ class _Overview extends StatelessWidget {
             style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 5),
-          Text(series.overview.value(), textAlign: TextAlign.justify),
+          Text(series.overview.nonNullValue(), textAlign: TextAlign.justify),
         ],
       ),
     );
@@ -272,17 +275,17 @@ class _MoreDetails extends StatelessWidget {
           _DetailRow(
             icon: Icons.video_library_outlined,
             label: l10n.seasons,
-            value: '${series.numberOfSeasons.value()}',
+            value: '${series.numberOfSeasons.nonNullValue()}',
           ),
           _DetailRow(
             icon: Icons.movie_filter_outlined,
             label: l10n.episodes,
-            value: '${series.numberOfEpisodes.value()}',
+            value: '${series.numberOfEpisodes.nonNullValue()}',
           ),
           _DetailRow(
             icon: Icons.info_outline,
             label: l10n.status,
-            value: series.status.valueEmpty(l10n.unknown),
+            value: series.status.nonNullValueEmpty(l10n.unknown),
           ),
           const SizedBox(height: 10),
         ],
@@ -359,7 +362,15 @@ class _SeriesCast extends ConsumerWidget {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: cast.length,
-            itemBuilder: (context, index) => _CastCard(actor: cast[index]),
+            itemBuilder: (context, index) {
+              final actor = cast[index];
+              return CastCard(
+                onTap: () => context.push('/home/0/person/${actor.id}'),
+                title: actor.name,
+                subtitle: actor.character.nonNullValue(l10n.noCharacter),
+                photoPath: actor.profilePath.nonNullValue(),
+              );
+            }
           ),
         ),
       ],
@@ -367,64 +378,7 @@ class _SeriesCast extends ConsumerWidget {
   }
 }
 
-class _CastCard extends StatelessWidget {
-  const _CastCard({required this.actor});
-  final Actor actor;
 
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
-
-    return InkWell(
-      onTap: () => context.push('/home/0/person/${actor.id}'),
-      child: Container(
-        width: 150,
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: isDarkTheme ? Colors.black38 : Colors.white,
-          boxShadow: const <BoxShadow>[
-            BoxShadow(blurRadius: 6, color: Colors.black12),
-          ],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: AppNetworkImage(
-                imageUrl: actor.profilePath,
-                width: double.infinity,
-                height: 170,
-                cacheWidth: 150,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Flexible(
-              child: Text(
-                actor.name,
-                maxLines: 1,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Flexible(
-              child: Text(
-                actor.character.value(l10n.noCharacter),
-                maxLines: 2,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class _LastSeason extends StatelessWidget {
   const _LastSeason({required this.season});
@@ -453,7 +407,7 @@ class _LastSeason extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: AppNetworkImage(
-                  imageUrl: season.posterPath.value(),
+                  imageUrl: season.posterPath.nonNullValue(),
                   width: 100,
                   height: 150,
                 ),
@@ -464,7 +418,7 @@ class _LastSeason extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      season.name.value(l10n.seasonFallbackName),
+                      season.name.nonNullValue(l10n.seasonFallbackName),
                       style: textTheme.titleMedium,
                     ),
                     const SizedBox(height: 4),
@@ -485,7 +439,7 @@ class _LastSeason extends StatelessWidget {
                               Text(
                                 NumberFormat.decimalPatternDigits(
                                   decimalDigits: 1,
-                                ).format(season.voteAverage.value()),
+                                ).format(season.voteAverage.nonNullValue()),
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -499,14 +453,14 @@ class _LastSeason extends StatelessWidget {
                           Text('${airDate.year}', style: textTheme.bodyMedium),
                         const SizedBox(width: 8),
                         Text(
-                          l10n.episodesCount(season.episodeCount.value()),
+                          l10n.episodesCount(season.episodeCount.nonNullValue()),
                           style: textTheme.bodyMedium,
                         ),
                       ],
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      season.overview.valueEmpty(l10n.noOverviewAvailable),
+                      season.overview.nonNullValue(l10n.noOverviewAvailable),
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                       style: textTheme.bodyMedium,

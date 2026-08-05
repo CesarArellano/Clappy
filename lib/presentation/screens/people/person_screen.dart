@@ -133,7 +133,7 @@ class _HeaderDetails extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: AppNetworkImage(
-              imageUrl: person.profilePath.value(),
+              imageUrl: person.profilePath.nonNullValue(),
               width: size.width * 0.3,
             ),
           ),
@@ -145,7 +145,7 @@ class _HeaderDetails extends StatelessWidget {
                 Text(person.name, style: textStyles.titleLarge),
                 const SizedBox(height: 4),
                 Text(
-                  person.knownForDepartment.value(l10n.unknownDepartment),
+                  person.knownForDepartment.nonNullValue(l10n.unknownDepartment),
                   style: textStyles.titleSmall,
                 ),
                 const SizedBox(height: 8),
@@ -202,11 +202,11 @@ class _Biography extends StatelessWidget {
           _DetailRow(
             icon: Icons.location_on_outlined,
             label: l10n.placeOfBirth,
-            value: person.placeOfBirth.valueEmpty(l10n.unknown),
+            value: person.placeOfBirth.nonNullValueEmpty(l10n.unknown),
           ),
           const SizedBox(height: 8),
           Text(
-            person.biography.valueEmpty(l10n.noBiographyAvailable),
+            person.biography.nonNullValueEmpty(l10n.noBiographyAvailable),
             textAlign: TextAlign.justify,
           ),
         ],

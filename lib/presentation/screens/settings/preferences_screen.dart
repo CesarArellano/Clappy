@@ -41,12 +41,22 @@ class PreferencesScreen extends ConsumerWidget {
                         .setThemePreference(ThemePreference.light),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: ChoiceChip(
+                    label: Text(l10n.darkLabel),
+                    selected: themePreference == ThemePreference.dark,
+                    onSelected: (_) => ref
+                        .read(themePreferenceProvider.notifier)
+                        .setThemePreference(ThemePreference.dark),
+                  ),
+                ),
                 ChoiceChip(
-                  label: Text(l10n.darkLabel),
-                  selected: themePreference == ThemePreference.dark,
+                  label: Text(l10n.systemLabel),
+                  selected: themePreference == ThemePreference.system,
                   onSelected: (_) => ref
                       .read(themePreferenceProvider.notifier)
-                      .setThemePreference(ThemePreference.dark),
+                      .setThemePreference(ThemePreference.system),
                 ),
               ],
             ),

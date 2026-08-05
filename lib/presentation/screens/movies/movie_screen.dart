@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../config/extensions/null_extensions.dart';
-import '../../../domain/entities/actor.dart';
 import '../../../domain/entities/movie.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../providers/movies/movie_info_provider.dart';
@@ -70,7 +69,7 @@ class _CustomSliverAppbar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
 
-    final isFavoriteFuture = ref.watch(isFavoriteProvider(movie.id.value()));
+    final isFavoriteFuture = ref.watch(isFavoriteProvider(movie.id.nonNullValue()));
 
     return SliverAppBar(
       foregroundColor: Colors.white,
@@ -81,7 +80,7 @@ class _CustomSliverAppbar extends ConsumerWidget {
           children: [
             SizedBox.expand(
               child: AppNetworkImage(
-                imageUrl: movie.posterPath.value(),
+                imageUrl: movie.posterPath.nonNullValue(),
                 width: size.width,
                 height: size.height * 0.7,
               ),
@@ -118,7 +117,7 @@ class _CustomSliverAppbar extends ConsumerWidget {
             await ref
                 .read(favoriteMoviesProvider.notifier)
                 .toggleFavorite(movie);
-            ref.invalidate(isFavoriteProvider(movie.id.value()));
+            ref.invalidate(isFavoriteProvider(movie.id.nonNullValue()));
           },
           icon: isFavoriteFuture.when(
             data: (isFavorite) => isFavorite
@@ -155,9 +154,9 @@ class _MovieDetails extends StatelessWidget {
         _MoreDetails(movie: movie),
         _ActorsByMovie(movieId: movie.id.toString()),
         const SizedBox(height: 8),
-        VideosFromMovie(movieId: movie.id.value()),
+        VideosFromMovie(movieId: movie.id.nonNullValue()),
         const SizedBox(height: 4),
-        SimilarMovies(movieId: movie.id.value()),
+        SimilarMovies(movieId: movie.id.nonNullValue()),
         const SizedBox(height: 12),
       ],
     );
@@ -186,7 +185,7 @@ class HeaderDetails extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: AppNetworkImage(
-              imageUrl: movie.posterPath.value(),
+              imageUrl: movie.posterPath.nonNullValue(),
               width: size.width * 0.3,
             ),
           ),
@@ -203,7 +202,7 @@ class HeaderDetails extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  movie.originalTitle.value(),
+                  movie.originalTitle.nonNullValue(),
                   style: textStyles.titleSmall,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
@@ -227,7 +226,7 @@ class HeaderDetails extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    if (movie.adult.value())
+                    if (movie.adult.nonNullValue())
                       Chip(
                         backgroundColor: Colors.red,
                         label: Text(l10n.adultTag, style: chipTextStyle),
@@ -261,7 +260,7 @@ class _Overview extends StatelessWidget {
             style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 5),
-          Text(movie.overview.value(), textAlign: TextAlign.justify),
+          Text(movie.overview.nonNullValue(), textAlign: TextAlign.justify),
         ],
       ),
     );
@@ -389,6 +388,7 @@ class _ActorsByMovie extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final i18n = AppLocalizations.of(context)!;
     final actors = ref.watch(actorsByMovieProvider)[movieId] ?? [];
 
     if (actors.isEmpty) {
@@ -400,64 +400,15 @@ class _ActorsByMovie extends ConsumerWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: actors.length,
-        itemBuilder: (context, index) => _CastCard(actor: actors[index]),
-      ),
-    );
-  }
-}
-
-class _CastCard extends StatelessWidget {
-  const _CastCard({required this.actor});
-  final Actor actor;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
-
-    return SizedBox(
-      width: 130,
-      child: Card(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        color: isDarkTheme ? Colors.black38 : Colors.white,
-        elevation: 6,
-        child: InkWell(
-          onTap: () => context.push('/home/0/person/${actor.id}'),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: AppNetworkImage(
-                  imageUrl: actor.profilePath,
-                  height: 170,
-                  cacheWidth: 150,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Flexible(
-                child: Text(
-                  actor.name,
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              Flexible(
-                child: Text(
-                  actor.character.value(l10n.noCharacter),
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
-          ),
-        )
+        itemBuilder: (context, index) {
+          final actor = actors[index];
+          return CastCard(
+            title: actor.name,
+            photoPath: actor.profilePath,
+            subtitle: actor.character.nonNullValue(i18n.noCharacter),
+            onTap: () => context.push('/home/0/person/${actor.id}'),
+          );
+        },
       ),
     );
   }

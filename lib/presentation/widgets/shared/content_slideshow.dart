@@ -63,9 +63,9 @@ class _ContentSlideshowState extends ConsumerState<ContentSlideshow> {
           .watch(moviesSlideshowProvider)
           .map(
             (movie) => _SlideItem(
-              imageUrl: movie.backdropPath.value(),
-              title: movie.title.value(),
-              voteAverage: movie.voteAverage.value(),
+              imageUrl: movie.backdropPath.nonNullValue(),
+              title: movie.title.nonNullValue(),
+              voteAverage: movie.voteAverage.nonNullValue(),
               routePath: '/home/0/movie/${movie.id}',
             ),
           )
@@ -75,9 +75,9 @@ class _ContentSlideshowState extends ConsumerState<ContentSlideshow> {
           .watch(seriesSlideshowProvider)
           .map(
             (series) => _SlideItem(
-              imageUrl: series.backdropPath.value(),
-              title: series.name.value(),
-              voteAverage: series.voteAverage.value(),
+              imageUrl: series.backdropPath.nonNullValue(),
+              title: series.name.nonNullValue(),
+              voteAverage: series.voteAverage.nonNullValue(),
               routePath: '/home/0/series/${series.id}',
             ),
           )
@@ -92,9 +92,9 @@ class _ContentSlideshowState extends ConsumerState<ContentSlideshow> {
           .read(moviesSlideshowProvider)
           .map(
             (movie) => _SlideItem(
-              imageUrl: movie.backdropPath.value(),
-              title: movie.title.value(),
-              voteAverage: movie.voteAverage.value(),
+              imageUrl: movie.backdropPath.nonNullValue(),
+              title: movie.title.nonNullValue(),
+              voteAverage: movie.voteAverage.nonNullValue(),
               routePath: '/home/0/movie/${movie.id}',
             ),
           )
@@ -104,9 +104,9 @@ class _ContentSlideshowState extends ConsumerState<ContentSlideshow> {
           .read(seriesSlideshowProvider)
           .map(
             (series) => _SlideItem(
-              imageUrl: series.backdropPath.value(),
-              title: series.name.value(),
-              voteAverage: series.voteAverage.value(),
+              imageUrl: series.backdropPath.nonNullValue(),
+              title: series.name.nonNullValue(),
+              voteAverage: series.voteAverage.nonNullValue(),
               routePath: '/home/0/series/${series.id}',
             ),
           )

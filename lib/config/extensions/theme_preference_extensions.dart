@@ -6,5 +6,6 @@ extension ThemePreferenceX on ThemePreference {
   ThemeMode get themeMode => switch (this) {
     ThemePreference.light => ThemeMode.light,
     ThemePreference.dark => ThemeMode.dark,
+    ThemePreference.system => ThemeMode.system,
   };
 }

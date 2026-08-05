@@ -122,7 +122,7 @@ class _Slide extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: AppNetworkImage(
-                    imageUrl: movie.posterPath.value(),
+                    imageUrl: movie.posterPath.nonNullValue(),
                     width: 150,
                     height: 200,
                   ),
@@ -131,7 +131,7 @@ class _Slide extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-          Text(movie.title.value(), maxLines: 2, style: textTheme.titleSmall),
+          Text(movie.title.nonNullValue(), maxLines: 2, style: textTheme.titleSmall),
           Row(
             children: [
               Icon(Icons.star_half_outlined, color: Colors.yellow.shade800),
@@ -139,14 +139,14 @@ class _Slide extends StatelessWidget {
               Text(
                 NumberFormat.decimalPatternDigits(
                   decimalDigits: 1,
-                ).format(movie.voteAverage.value()),
+                ).format(movie.voteAverage.nonNullValue()),
                 style: textTheme.bodyMedium?.copyWith(
                   color: Colors.yellow.shade800,
                 ),
               ),
               const Spacer(),
               Text(
-                HumanFormats.number(movie.popularity.value(), 2),
+                HumanFormats.number(movie.popularity.nonNullValue(), 2),
                 style: textTheme.bodySmall,
               ),
             ],

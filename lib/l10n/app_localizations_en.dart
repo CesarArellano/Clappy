@@ -191,6 +191,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get darkLabel => 'Dark';
 
   @override
+  String get systemLabel => 'System';
+
+  @override
   String get englishLabel => 'English';
 
   @override

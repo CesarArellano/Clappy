@@ -60,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen>
       body: Stack(
         children: [
           Positioned.fill(
+            top: CustomAppbar.height(context),
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: pageController,

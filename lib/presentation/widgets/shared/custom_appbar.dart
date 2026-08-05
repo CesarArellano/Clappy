@@ -11,6 +11,10 @@ import '../../providers/providers.dart';
 
 class CustomAppbar extends ConsumerWidget {
   const CustomAppbar({super.key});
+
+  static double height(BuildContext context) {
+    return kToolbarHeight + MediaQuery.of(context).padding.top;
+  }
   
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -27,7 +27,7 @@ class StorageMovieNotifier extends StateNotifier<Map<int, Movie>> {
     final tempMoviesMap = <int, Movie>{};
 
     for (final Movie movie in movies) {
-      tempMoviesMap[movie.id.value()] = movie;
+      tempMoviesMap[movie.id.nonNullValue()] = movie;
     }
 
     state = {...state, ...tempMoviesMap};
@@ -45,7 +45,7 @@ class StorageMovieNotifier extends StateNotifier<Map<int, Movie>> {
       newState.remove(movie.id);
       state = newState;
     } else {
-      state = {...state, movie.id.value(): movie};
+      state = {...state, movie.id.nonNullValue(): movie};
     }
   }
 }
