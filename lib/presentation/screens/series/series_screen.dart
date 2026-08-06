@@ -9,8 +9,7 @@ import '../../../config/extensions/null_extensions.dart';
 import '../../../domain/entities/tv_season.dart';
 import '../../../domain/entities/tv_show.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../providers/series/series_cast_provider.dart';
-import '../../providers/series/series_info_provider.dart';
+import '../../providers/providers.dart';
 import '../../widgets/widgets.dart';
 
 class SeriesScreen extends ConsumerStatefulWidget {
@@ -58,13 +57,25 @@ class _SeriesScreenState extends ConsumerState<SeriesScreen> {
   }
 }
 
-class _CustomSliverAppbar extends StatelessWidget {
+final isFavoriteSeriesProvider = FutureProvider.family.autoDispose((
+  ref,
+  int seriesId,
+) {
+  final localStorageProvider = ref.watch(localStorageRepositoryProvider);
+  return localStorageProvider.isSeriesFavorite(seriesId);
+});
+
+class _CustomSliverAppbar extends ConsumerWidget {
   const _CustomSliverAppbar({required this.series});
 
   final TvShow series;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
+
+    final isFavoriteFuture = ref.watch(
+      isFavoriteSeriesProvider(series.id.nonNullValue()),
+    );
 
     return SliverAppBar(
       foregroundColor: Colors.white,
@@ -106,6 +117,30 @@ class _CustomSliverAppbar extends StatelessWidget {
           ],
         ),
       ),
+      actions: [
+        IconButton(
+          onPressed: () async {
+            await ref
+                .read(favoriteSeriesProvider.notifier)
+                .toggleFavorite(series);
+            ref.invalidate(isFavoriteSeriesProvider(series.id.nonNullValue()));
+          },
+          icon: isFavoriteFuture.when(
+            data: (isFavorite) => isFavorite
+                ? const Icon(Icons.favorite, color: Colors.red)
+                : const Icon(Icons.favorite_border),
+            error: (error, stackTrace) => const Icon(Icons.favorite_border),
+            loading: () => const SizedBox(
+              width: 18,
+              height: 18,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

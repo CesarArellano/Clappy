@@ -20,4 +20,5 @@ export 'series/series_providers.dart';
 export 'series/series_repository_provider.dart';
 export 'series/series_slideshow_provider.dart';
 export 'storage/favorite_movies_provider.dart';
+export 'storage/favorite_series_provider.dart';
 export 'storage/local_storage_provider.dart';

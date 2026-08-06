@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 
 import '../../domain/datasources/local_storage_datasource.dart';
 import '../../domain/entities/movie.dart';
+import '../../domain/entities/tv_show.dart';
 import 'drift/app_database.dart';
 
 class DriftDatasource implements LocalStorageDatasource {
@@ -92,4 +93,77 @@ class DriftDatasource implements LocalStorageDatasource {
     if (raw.isEmpty) return [];
     return raw.split(',');
   }
+
+  @override
+  Future<bool> isSeriesFavorite(int seriesId) async {
+    final favoriteSeries = await (db.select(
+      db.seriesTable,
+    )..where((series) => series.id.equals(seriesId))).getSingleOrNull();
+
+    return favoriteSeries != null;
+  }
+
+  @override
+  Future<List<TvShow>> loadSeries({int limit = 10, int offset = 0}) async {
+    final entries = await (db.select(
+      db.seriesTable,
+    )..limit(limit, offset: offset)).get();
+
+    return entries.map(_entrySeriesToShow).toList();
+  }
+
+  @override
+  Future<void> toggleFavoriteSeries(TvShow series) async {
+    final favoriteSeries = await (db.select(
+      db.seriesTable,
+    )..where((entry) => entry.id.equals(series.id!))).getSingleOrNull();
+
+    if (favoriteSeries != null) {
+      await (db.delete(
+        db.seriesTable,
+      )..where((entry) => entry.id.equals(series.id!))).go();
+      return;
+    }
+
+    await db.into(db.seriesTable).insert(_seriesToCompanion(series));
+  }
+
+  TvShow _entrySeriesToShow(SeriesEntry entry) => TvShow(
+    adult: entry.adult,
+    backdropPath: entry.backdropPath,
+    genreIds: _decodeGenreIds(entry.genreIds),
+    id: entry.id,
+    originalLanguage: entry.originalLanguage,
+    originalName: entry.originalName,
+    overview: entry.overview,
+    popularity: entry.popularity,
+    posterPath: entry.posterPath,
+    firstAirDate: entry.firstAirDate,
+    name: entry.name,
+    voteAverage: entry.voteAverage,
+    voteCount: entry.voteCount,
+    numberOfSeasons: entry.numberOfSeasons,
+    numberOfEpisodes: entry.numberOfEpisodes,
+    status: entry.status,
+  );
+
+  SeriesTableCompanion _seriesToCompanion(TvShow series) =>
+      SeriesTableCompanion.insert(
+        id: Value(series.id!),
+        adult: Value(series.adult),
+        backdropPath: Value(series.backdropPath),
+        genreIds: Value(_encodeGenreIds(series.genreIds)),
+        originalLanguage: Value(series.originalLanguage),
+        originalName: Value(series.originalName),
+        overview: Value(series.overview),
+        popularity: Value(series.popularity),
+        posterPath: Value(series.posterPath),
+        firstAirDate: Value(series.firstAirDate),
+        name: Value(series.name),
+        voteAverage: Value(series.voteAverage),
+        voteCount: Value(series.voteCount),
+        numberOfSeasons: Value(series.numberOfSeasons),
+        numberOfEpisodes: Value(series.numberOfEpisodes),
+        status: Value(series.status),
+      );
 }

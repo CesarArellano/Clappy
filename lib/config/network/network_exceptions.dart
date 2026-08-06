@@ -28,10 +28,7 @@ class NetworkException implements Exception {
           error: exception,
         );
       case DioExceptionType.cancel:
-        return NetworkException(
-          NetworkErrorType.cancelled,
-          error: exception,
-        );
+        return NetworkException(NetworkErrorType.cancelled, error: exception);
       case DioExceptionType.badCertificate:
         return NetworkException(
           NetworkErrorType.badCertificate,

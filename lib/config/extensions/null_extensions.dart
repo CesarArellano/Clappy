@@ -36,6 +36,7 @@ extension BoolNullExtension on bool? {
     return this ?? defaultValue;
   }
 }
+
 extension SwappableList<E> on List<E> {
   void swap(int first, int second) {
     final temp = this[first];

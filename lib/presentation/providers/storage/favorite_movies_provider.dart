@@ -35,6 +35,12 @@ class StorageMovieNotifier extends StateNotifier<Map<int, Movie>> {
     return movies;
   }
 
+  Future<void> refresh() async {
+    page = 0;
+    state = {};
+    await loadNextPage();
+  }
+
   Future<void> toggleFavorite(Movie movie) async {
     await localStorageRepository.toggleFavorite(movie);
     if (!mounted) return;

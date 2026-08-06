@@ -60,6 +60,7 @@
   "tookLongerThanExpected": "Esto tardó más de lo esperado",
   "ohNo": "¡¡Oh no!!",
   "noFavoriteMovies": "No tienes películas favoritas",
+  "noFavoriteSeries": "No tienes series favoritas",
   "startSearching": "Empieza a buscar",
 
   "couldNotLoadContent": "No se pudo cargar el contenido",

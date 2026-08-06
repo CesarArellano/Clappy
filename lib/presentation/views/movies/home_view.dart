@@ -48,92 +48,114 @@ class _HomeViewState extends ConsumerState<HomeView>
     final popularSeries = ref.watch(popularSeriesProvider);
     final topRatedSeries = ref.watch(topRatedSeriesProvider);
 
-    return CustomScrollView(
-      slivers: [
-        SliverList(
-          delegate: SliverChildListDelegate.fixed([
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                children: ContentType.values
-                    .map(
-                      (type) => Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: ChoiceChip(
-                          label: Text(type.label(context)),
-                          selected: contentType == type,
-                          onSelected: (_) =>
-                              ref.read(contentTypeProvider.notifier).state =
-                                  type,
+    Future<void> onRefresh() => switch (contentType) {
+      ContentType.movies => Future.wait([
+        ref.read(nowPlayingMoviesProvider.notifier).refresh(),
+        ref.read(upcomingMoviesProvider.notifier).refresh(),
+        ref.read(popularMoviesProvider.notifier).refresh(),
+        ref.read(topRatedMoviesProvider.notifier).refresh(),
+      ]),
+      ContentType.series => Future.wait([
+        ref.read(airingTodaySeriesProvider.notifier).refresh(),
+        ref.read(onTheAirSeriesProvider.notifier).refresh(),
+        ref.read(popularSeriesProvider.notifier).refresh(),
+        ref.read(topRatedSeriesProvider.notifier).refresh(),
+      ]),
+    };
+
+    return RefreshIndicator(
+      onRefresh: onRefresh,
+      child: CustomScrollView(
+        slivers: [
+          SliverList(
+            delegate: SliverChildListDelegate.fixed([
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  children: ContentType.values
+                      .map(
+                        (type) => Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: ChoiceChip(
+                            label: Text(type.label(context)),
+                            selected: contentType == type,
+                            onSelected: (_) =>
+                                ref.read(contentTypeProvider.notifier).state =
+                                    type,
+                          ),
                         ),
-                      ),
-                    )
-                    .toList(),
+                      )
+                      .toList(),
+                ),
               ),
-            ),
-            const ContentSlideshow(),
-            ...switch (contentType) {
-              ContentType.movies => [
-                MovieHorizontalListview(
-                  title: l10n.inTheaters,
-                  subtitle: todaySubtitle,
-                  movies: nowPlayingMovies,
-                  loadNextPage: () => ref
-                      .read(nowPlayingMoviesProvider.notifier)
-                      .loadNextPage(),
-                ),
-                MovieHorizontalListview(
-                  title: l10n.upcoming,
-                  movies: upcomingMovies,
-                  loadNextPage: () =>
-                      ref.read(upcomingMoviesProvider.notifier).loadNextPage(),
-                ),
-                MovieHorizontalListview(
-                  title: l10n.popular,
-                  movies: popularMovies,
-                  loadNextPage: () =>
-                      ref.read(popularMoviesProvider.notifier).loadNextPage(),
-                ),
-                MovieHorizontalListview(
-                  title: l10n.topRated,
-                  subtitle: l10n.sinceEverSubtitle,
-                  movies: topRatedMovies,
-                  loadNextPage: () =>
-                      ref.read(topRatedMoviesProvider.notifier).loadNextPage(),
-                ),
-              ],
-              ContentType.series => [
-                SeriesHorizontalListview(
-                  title: l10n.airingToday,
-                  series: airingTodaySeries,
-                  loadNextPage: () => ref
-                      .read(airingTodaySeriesProvider.notifier)
-                      .loadNextPage(),
-                ),
-                SeriesHorizontalListview(
-                  title: l10n.onTheAir,
-                  series: onTheAirSeries,
-                  loadNextPage: () =>
-                      ref.read(onTheAirSeriesProvider.notifier).loadNextPage(),
-                ),
-                SeriesHorizontalListview(
-                  title: l10n.popular,
-                  series: popularSeries,
-                  loadNextPage: () =>
-                      ref.read(popularSeriesProvider.notifier).loadNextPage(),
-                ),
-                SeriesHorizontalListview(
-                  title: l10n.topRated,
-                  series: topRatedSeries,
-                  loadNextPage: () =>
-                      ref.read(topRatedSeriesProvider.notifier).loadNextPage(),
-                ),
-              ],
-            },
-            const SizedBox(height: 10),
-          ]),
-        ),
-      ],
+              const ContentSlideshow(),
+              ...switch (contentType) {
+                ContentType.movies => [
+                  MovieHorizontalListview(
+                    title: l10n.inTheaters,
+                    subtitle: todaySubtitle,
+                    movies: nowPlayingMovies,
+                    loadNextPage: () => ref
+                        .read(nowPlayingMoviesProvider.notifier)
+                        .loadNextPage(),
+                  ),
+                  MovieHorizontalListview(
+                    title: l10n.upcoming,
+                    movies: upcomingMovies,
+                    loadNextPage: () => ref
+                        .read(upcomingMoviesProvider.notifier)
+                        .loadNextPage(),
+                  ),
+                  MovieHorizontalListview(
+                    title: l10n.popular,
+                    movies: popularMovies,
+                    loadNextPage: () =>
+                        ref.read(popularMoviesProvider.notifier).loadNextPage(),
+                  ),
+                  MovieHorizontalListview(
+                    title: l10n.topRated,
+                    subtitle: l10n.sinceEverSubtitle,
+                    movies: topRatedMovies,
+                    loadNextPage: () => ref
+                        .read(topRatedMoviesProvider.notifier)
+                        .loadNextPage(),
+                  ),
+                ],
+                ContentType.series => [
+                  SeriesHorizontalListview(
+                    title: l10n.airingToday,
+                    series: airingTodaySeries,
+                    loadNextPage: () => ref
+                        .read(airingTodaySeriesProvider.notifier)
+                        .loadNextPage(),
+                  ),
+                  SeriesHorizontalListview(
+                    title: l10n.onTheAir,
+                    series: onTheAirSeries,
+                    loadNextPage: () => ref
+                        .read(onTheAirSeriesProvider.notifier)
+                        .loadNextPage(),
+                  ),
+                  SeriesHorizontalListview(
+                    title: l10n.popular,
+                    series: popularSeries,
+                    loadNextPage: () =>
+                        ref.read(popularSeriesProvider.notifier).loadNextPage(),
+                  ),
+                  SeriesHorizontalListview(
+                    title: l10n.topRated,
+                    series: topRatedSeries,
+                    loadNextPage: () => ref
+                        .read(topRatedSeriesProvider.notifier)
+                        .loadNextPage(),
+                  ),
+                ],
+              },
+              const SizedBox(height: 10),
+            ]),
+          ),
+        ],
+      ),
     );
   }
 

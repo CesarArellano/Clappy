@@ -170,6 +170,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noFavoriteMovies => 'No tienes películas favoritas';
 
   @override
+  String get noFavoriteSeries => 'No tienes series favoritas';
+
+  @override
   String get startSearching => 'Empieza a buscar';
 
   @override

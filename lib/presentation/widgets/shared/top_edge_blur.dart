@@ -13,7 +13,7 @@ class TopEdgeBlur extends StatelessWidget {
       edgeAlign: EdgeAlign.top,
       fogEdgeChild: FogEdgeChild(
         heightEdge: MediaQuery.of(context).padding.top + 4,
-        colorEdge: Colors.black26
+        colorEdge: Colors.black26,
       ),
       child: child,
     );

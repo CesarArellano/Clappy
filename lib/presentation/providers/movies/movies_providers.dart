@@ -58,4 +58,10 @@ class MoviesNotifier extends StateNotifier<List<Movie>> {
     await Future.delayed(const Duration(milliseconds: 300));
     isLoading = false;
   }
+
+  Future<void> refresh() async {
+    currentPage = 0;
+    state = [];
+    await loadNextPage();
+  }
 }

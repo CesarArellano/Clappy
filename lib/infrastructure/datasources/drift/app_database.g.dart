@@ -1028,15 +1028,957 @@ class MoviesTableCompanion extends UpdateCompanion<MovieEntry> {
   }
 }
 
+class $SeriesTableTable extends SeriesTable
+    with TableInfo<$SeriesTableTable, SeriesEntry> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SeriesTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _adultMeta = const VerificationMeta('adult');
+  @override
+  late final GeneratedColumn<bool> adult = GeneratedColumn<bool>(
+    'adult',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("adult" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _backdropPathMeta = const VerificationMeta(
+    'backdropPath',
+  );
+  @override
+  late final GeneratedColumn<String> backdropPath = GeneratedColumn<String>(
+    'backdrop_path',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _genreIdsMeta = const VerificationMeta(
+    'genreIds',
+  );
+  @override
+  late final GeneratedColumn<String> genreIds = GeneratedColumn<String>(
+    'genre_ids',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _originalLanguageMeta = const VerificationMeta(
+    'originalLanguage',
+  );
+  @override
+  late final GeneratedColumn<String> originalLanguage = GeneratedColumn<String>(
+    'original_language',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _originalNameMeta = const VerificationMeta(
+    'originalName',
+  );
+  @override
+  late final GeneratedColumn<String> originalName = GeneratedColumn<String>(
+    'original_name',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _overviewMeta = const VerificationMeta(
+    'overview',
+  );
+  @override
+  late final GeneratedColumn<String> overview = GeneratedColumn<String>(
+    'overview',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _popularityMeta = const VerificationMeta(
+    'popularity',
+  );
+  @override
+  late final GeneratedColumn<double> popularity = GeneratedColumn<double>(
+    'popularity',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _posterPathMeta = const VerificationMeta(
+    'posterPath',
+  );
+  @override
+  late final GeneratedColumn<String> posterPath = GeneratedColumn<String>(
+    'poster_path',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _firstAirDateMeta = const VerificationMeta(
+    'firstAirDate',
+  );
+  @override
+  late final GeneratedColumn<DateTime> firstAirDate = GeneratedColumn<DateTime>(
+    'first_air_date',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _voteAverageMeta = const VerificationMeta(
+    'voteAverage',
+  );
+  @override
+  late final GeneratedColumn<double> voteAverage = GeneratedColumn<double>(
+    'vote_average',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _voteCountMeta = const VerificationMeta(
+    'voteCount',
+  );
+  @override
+  late final GeneratedColumn<int> voteCount = GeneratedColumn<int>(
+    'vote_count',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _numberOfSeasonsMeta = const VerificationMeta(
+    'numberOfSeasons',
+  );
+  @override
+  late final GeneratedColumn<int> numberOfSeasons = GeneratedColumn<int>(
+    'number_of_seasons',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _numberOfEpisodesMeta = const VerificationMeta(
+    'numberOfEpisodes',
+  );
+  @override
+  late final GeneratedColumn<int> numberOfEpisodes = GeneratedColumn<int>(
+    'number_of_episodes',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+    'status',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    adult,
+    backdropPath,
+    genreIds,
+    originalLanguage,
+    originalName,
+    overview,
+    popularity,
+    posterPath,
+    firstAirDate,
+    name,
+    voteAverage,
+    voteCount,
+    numberOfSeasons,
+    numberOfEpisodes,
+    status,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'series';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SeriesEntry> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('adult')) {
+      context.handle(
+        _adultMeta,
+        adult.isAcceptableOrUnknown(data['adult']!, _adultMeta),
+      );
+    }
+    if (data.containsKey('backdrop_path')) {
+      context.handle(
+        _backdropPathMeta,
+        backdropPath.isAcceptableOrUnknown(
+          data['backdrop_path']!,
+          _backdropPathMeta,
+        ),
+      );
+    }
+    if (data.containsKey('genre_ids')) {
+      context.handle(
+        _genreIdsMeta,
+        genreIds.isAcceptableOrUnknown(data['genre_ids']!, _genreIdsMeta),
+      );
+    }
+    if (data.containsKey('original_language')) {
+      context.handle(
+        _originalLanguageMeta,
+        originalLanguage.isAcceptableOrUnknown(
+          data['original_language']!,
+          _originalLanguageMeta,
+        ),
+      );
+    }
+    if (data.containsKey('original_name')) {
+      context.handle(
+        _originalNameMeta,
+        originalName.isAcceptableOrUnknown(
+          data['original_name']!,
+          _originalNameMeta,
+        ),
+      );
+    }
+    if (data.containsKey('overview')) {
+      context.handle(
+        _overviewMeta,
+        overview.isAcceptableOrUnknown(data['overview']!, _overviewMeta),
+      );
+    }
+    if (data.containsKey('popularity')) {
+      context.handle(
+        _popularityMeta,
+        popularity.isAcceptableOrUnknown(data['popularity']!, _popularityMeta),
+      );
+    }
+    if (data.containsKey('poster_path')) {
+      context.handle(
+        _posterPathMeta,
+        posterPath.isAcceptableOrUnknown(data['poster_path']!, _posterPathMeta),
+      );
+    }
+    if (data.containsKey('first_air_date')) {
+      context.handle(
+        _firstAirDateMeta,
+        firstAirDate.isAcceptableOrUnknown(
+          data['first_air_date']!,
+          _firstAirDateMeta,
+        ),
+      );
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    }
+    if (data.containsKey('vote_average')) {
+      context.handle(
+        _voteAverageMeta,
+        voteAverage.isAcceptableOrUnknown(
+          data['vote_average']!,
+          _voteAverageMeta,
+        ),
+      );
+    }
+    if (data.containsKey('vote_count')) {
+      context.handle(
+        _voteCountMeta,
+        voteCount.isAcceptableOrUnknown(data['vote_count']!, _voteCountMeta),
+      );
+    }
+    if (data.containsKey('number_of_seasons')) {
+      context.handle(
+        _numberOfSeasonsMeta,
+        numberOfSeasons.isAcceptableOrUnknown(
+          data['number_of_seasons']!,
+          _numberOfSeasonsMeta,
+        ),
+      );
+    }
+    if (data.containsKey('number_of_episodes')) {
+      context.handle(
+        _numberOfEpisodesMeta,
+        numberOfEpisodes.isAcceptableOrUnknown(
+          data['number_of_episodes']!,
+          _numberOfEpisodesMeta,
+        ),
+      );
+    }
+    if (data.containsKey('status')) {
+      context.handle(
+        _statusMeta,
+        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  SeriesEntry map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SeriesEntry(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      adult: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}adult'],
+      ),
+      backdropPath: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}backdrop_path'],
+      ),
+      genreIds: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}genre_ids'],
+      ),
+      originalLanguage: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}original_language'],
+      ),
+      originalName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}original_name'],
+      ),
+      overview: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}overview'],
+      ),
+      popularity: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}popularity'],
+      ),
+      posterPath: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}poster_path'],
+      ),
+      firstAirDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}first_air_date'],
+      ),
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      ),
+      voteAverage: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}vote_average'],
+      ),
+      voteCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}vote_count'],
+      ),
+      numberOfSeasons: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}number_of_seasons'],
+      ),
+      numberOfEpisodes: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}number_of_episodes'],
+      ),
+      status: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}status'],
+      ),
+    );
+  }
+
+  @override
+  $SeriesTableTable createAlias(String alias) {
+    return $SeriesTableTable(attachedDatabase, alias);
+  }
+}
+
+class SeriesEntry extends DataClass implements Insertable<SeriesEntry> {
+  final int id;
+  final bool? adult;
+  final String? backdropPath;
+  final String? genreIds;
+  final String? originalLanguage;
+  final String? originalName;
+  final String? overview;
+  final double? popularity;
+  final String? posterPath;
+  final DateTime? firstAirDate;
+  final String? name;
+  final double? voteAverage;
+  final int? voteCount;
+  final int? numberOfSeasons;
+  final int? numberOfEpisodes;
+  final String? status;
+  const SeriesEntry({
+    required this.id,
+    this.adult,
+    this.backdropPath,
+    this.genreIds,
+    this.originalLanguage,
+    this.originalName,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.firstAirDate,
+    this.name,
+    this.voteAverage,
+    this.voteCount,
+    this.numberOfSeasons,
+    this.numberOfEpisodes,
+    this.status,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    if (!nullToAbsent || adult != null) {
+      map['adult'] = Variable<bool>(adult);
+    }
+    if (!nullToAbsent || backdropPath != null) {
+      map['backdrop_path'] = Variable<String>(backdropPath);
+    }
+    if (!nullToAbsent || genreIds != null) {
+      map['genre_ids'] = Variable<String>(genreIds);
+    }
+    if (!nullToAbsent || originalLanguage != null) {
+      map['original_language'] = Variable<String>(originalLanguage);
+    }
+    if (!nullToAbsent || originalName != null) {
+      map['original_name'] = Variable<String>(originalName);
+    }
+    if (!nullToAbsent || overview != null) {
+      map['overview'] = Variable<String>(overview);
+    }
+    if (!nullToAbsent || popularity != null) {
+      map['popularity'] = Variable<double>(popularity);
+    }
+    if (!nullToAbsent || posterPath != null) {
+      map['poster_path'] = Variable<String>(posterPath);
+    }
+    if (!nullToAbsent || firstAirDate != null) {
+      map['first_air_date'] = Variable<DateTime>(firstAirDate);
+    }
+    if (!nullToAbsent || name != null) {
+      map['name'] = Variable<String>(name);
+    }
+    if (!nullToAbsent || voteAverage != null) {
+      map['vote_average'] = Variable<double>(voteAverage);
+    }
+    if (!nullToAbsent || voteCount != null) {
+      map['vote_count'] = Variable<int>(voteCount);
+    }
+    if (!nullToAbsent || numberOfSeasons != null) {
+      map['number_of_seasons'] = Variable<int>(numberOfSeasons);
+    }
+    if (!nullToAbsent || numberOfEpisodes != null) {
+      map['number_of_episodes'] = Variable<int>(numberOfEpisodes);
+    }
+    if (!nullToAbsent || status != null) {
+      map['status'] = Variable<String>(status);
+    }
+    return map;
+  }
+
+  SeriesTableCompanion toCompanion(bool nullToAbsent) {
+    return SeriesTableCompanion(
+      id: Value(id),
+      adult: adult == null && nullToAbsent
+          ? const Value.absent()
+          : Value(adult),
+      backdropPath: backdropPath == null && nullToAbsent
+          ? const Value.absent()
+          : Value(backdropPath),
+      genreIds: genreIds == null && nullToAbsent
+          ? const Value.absent()
+          : Value(genreIds),
+      originalLanguage: originalLanguage == null && nullToAbsent
+          ? const Value.absent()
+          : Value(originalLanguage),
+      originalName: originalName == null && nullToAbsent
+          ? const Value.absent()
+          : Value(originalName),
+      overview: overview == null && nullToAbsent
+          ? const Value.absent()
+          : Value(overview),
+      popularity: popularity == null && nullToAbsent
+          ? const Value.absent()
+          : Value(popularity),
+      posterPath: posterPath == null && nullToAbsent
+          ? const Value.absent()
+          : Value(posterPath),
+      firstAirDate: firstAirDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(firstAirDate),
+      name: name == null && nullToAbsent ? const Value.absent() : Value(name),
+      voteAverage: voteAverage == null && nullToAbsent
+          ? const Value.absent()
+          : Value(voteAverage),
+      voteCount: voteCount == null && nullToAbsent
+          ? const Value.absent()
+          : Value(voteCount),
+      numberOfSeasons: numberOfSeasons == null && nullToAbsent
+          ? const Value.absent()
+          : Value(numberOfSeasons),
+      numberOfEpisodes: numberOfEpisodes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(numberOfEpisodes),
+      status: status == null && nullToAbsent
+          ? const Value.absent()
+          : Value(status),
+    );
+  }
+
+  factory SeriesEntry.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SeriesEntry(
+      id: serializer.fromJson<int>(json['id']),
+      adult: serializer.fromJson<bool?>(json['adult']),
+      backdropPath: serializer.fromJson<String?>(json['backdropPath']),
+      genreIds: serializer.fromJson<String?>(json['genreIds']),
+      originalLanguage: serializer.fromJson<String?>(json['originalLanguage']),
+      originalName: serializer.fromJson<String?>(json['originalName']),
+      overview: serializer.fromJson<String?>(json['overview']),
+      popularity: serializer.fromJson<double?>(json['popularity']),
+      posterPath: serializer.fromJson<String?>(json['posterPath']),
+      firstAirDate: serializer.fromJson<DateTime?>(json['firstAirDate']),
+      name: serializer.fromJson<String?>(json['name']),
+      voteAverage: serializer.fromJson<double?>(json['voteAverage']),
+      voteCount: serializer.fromJson<int?>(json['voteCount']),
+      numberOfSeasons: serializer.fromJson<int?>(json['numberOfSeasons']),
+      numberOfEpisodes: serializer.fromJson<int?>(json['numberOfEpisodes']),
+      status: serializer.fromJson<String?>(json['status']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'adult': serializer.toJson<bool?>(adult),
+      'backdropPath': serializer.toJson<String?>(backdropPath),
+      'genreIds': serializer.toJson<String?>(genreIds),
+      'originalLanguage': serializer.toJson<String?>(originalLanguage),
+      'originalName': serializer.toJson<String?>(originalName),
+      'overview': serializer.toJson<String?>(overview),
+      'popularity': serializer.toJson<double?>(popularity),
+      'posterPath': serializer.toJson<String?>(posterPath),
+      'firstAirDate': serializer.toJson<DateTime?>(firstAirDate),
+      'name': serializer.toJson<String?>(name),
+      'voteAverage': serializer.toJson<double?>(voteAverage),
+      'voteCount': serializer.toJson<int?>(voteCount),
+      'numberOfSeasons': serializer.toJson<int?>(numberOfSeasons),
+      'numberOfEpisodes': serializer.toJson<int?>(numberOfEpisodes),
+      'status': serializer.toJson<String?>(status),
+    };
+  }
+
+  SeriesEntry copyWith({
+    int? id,
+    Value<bool?> adult = const Value.absent(),
+    Value<String?> backdropPath = const Value.absent(),
+    Value<String?> genreIds = const Value.absent(),
+    Value<String?> originalLanguage = const Value.absent(),
+    Value<String?> originalName = const Value.absent(),
+    Value<String?> overview = const Value.absent(),
+    Value<double?> popularity = const Value.absent(),
+    Value<String?> posterPath = const Value.absent(),
+    Value<DateTime?> firstAirDate = const Value.absent(),
+    Value<String?> name = const Value.absent(),
+    Value<double?> voteAverage = const Value.absent(),
+    Value<int?> voteCount = const Value.absent(),
+    Value<int?> numberOfSeasons = const Value.absent(),
+    Value<int?> numberOfEpisodes = const Value.absent(),
+    Value<String?> status = const Value.absent(),
+  }) => SeriesEntry(
+    id: id ?? this.id,
+    adult: adult.present ? adult.value : this.adult,
+    backdropPath: backdropPath.present ? backdropPath.value : this.backdropPath,
+    genreIds: genreIds.present ? genreIds.value : this.genreIds,
+    originalLanguage: originalLanguage.present
+        ? originalLanguage.value
+        : this.originalLanguage,
+    originalName: originalName.present ? originalName.value : this.originalName,
+    overview: overview.present ? overview.value : this.overview,
+    popularity: popularity.present ? popularity.value : this.popularity,
+    posterPath: posterPath.present ? posterPath.value : this.posterPath,
+    firstAirDate: firstAirDate.present ? firstAirDate.value : this.firstAirDate,
+    name: name.present ? name.value : this.name,
+    voteAverage: voteAverage.present ? voteAverage.value : this.voteAverage,
+    voteCount: voteCount.present ? voteCount.value : this.voteCount,
+    numberOfSeasons: numberOfSeasons.present
+        ? numberOfSeasons.value
+        : this.numberOfSeasons,
+    numberOfEpisodes: numberOfEpisodes.present
+        ? numberOfEpisodes.value
+        : this.numberOfEpisodes,
+    status: status.present ? status.value : this.status,
+  );
+  SeriesEntry copyWithCompanion(SeriesTableCompanion data) {
+    return SeriesEntry(
+      id: data.id.present ? data.id.value : this.id,
+      adult: data.adult.present ? data.adult.value : this.adult,
+      backdropPath: data.backdropPath.present
+          ? data.backdropPath.value
+          : this.backdropPath,
+      genreIds: data.genreIds.present ? data.genreIds.value : this.genreIds,
+      originalLanguage: data.originalLanguage.present
+          ? data.originalLanguage.value
+          : this.originalLanguage,
+      originalName: data.originalName.present
+          ? data.originalName.value
+          : this.originalName,
+      overview: data.overview.present ? data.overview.value : this.overview,
+      popularity: data.popularity.present
+          ? data.popularity.value
+          : this.popularity,
+      posterPath: data.posterPath.present
+          ? data.posterPath.value
+          : this.posterPath,
+      firstAirDate: data.firstAirDate.present
+          ? data.firstAirDate.value
+          : this.firstAirDate,
+      name: data.name.present ? data.name.value : this.name,
+      voteAverage: data.voteAverage.present
+          ? data.voteAverage.value
+          : this.voteAverage,
+      voteCount: data.voteCount.present ? data.voteCount.value : this.voteCount,
+      numberOfSeasons: data.numberOfSeasons.present
+          ? data.numberOfSeasons.value
+          : this.numberOfSeasons,
+      numberOfEpisodes: data.numberOfEpisodes.present
+          ? data.numberOfEpisodes.value
+          : this.numberOfEpisodes,
+      status: data.status.present ? data.status.value : this.status,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SeriesEntry(')
+          ..write('id: $id, ')
+          ..write('adult: $adult, ')
+          ..write('backdropPath: $backdropPath, ')
+          ..write('genreIds: $genreIds, ')
+          ..write('originalLanguage: $originalLanguage, ')
+          ..write('originalName: $originalName, ')
+          ..write('overview: $overview, ')
+          ..write('popularity: $popularity, ')
+          ..write('posterPath: $posterPath, ')
+          ..write('firstAirDate: $firstAirDate, ')
+          ..write('name: $name, ')
+          ..write('voteAverage: $voteAverage, ')
+          ..write('voteCount: $voteCount, ')
+          ..write('numberOfSeasons: $numberOfSeasons, ')
+          ..write('numberOfEpisodes: $numberOfEpisodes, ')
+          ..write('status: $status')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    adult,
+    backdropPath,
+    genreIds,
+    originalLanguage,
+    originalName,
+    overview,
+    popularity,
+    posterPath,
+    firstAirDate,
+    name,
+    voteAverage,
+    voteCount,
+    numberOfSeasons,
+    numberOfEpisodes,
+    status,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SeriesEntry &&
+          other.id == this.id &&
+          other.adult == this.adult &&
+          other.backdropPath == this.backdropPath &&
+          other.genreIds == this.genreIds &&
+          other.originalLanguage == this.originalLanguage &&
+          other.originalName == this.originalName &&
+          other.overview == this.overview &&
+          other.popularity == this.popularity &&
+          other.posterPath == this.posterPath &&
+          other.firstAirDate == this.firstAirDate &&
+          other.name == this.name &&
+          other.voteAverage == this.voteAverage &&
+          other.voteCount == this.voteCount &&
+          other.numberOfSeasons == this.numberOfSeasons &&
+          other.numberOfEpisodes == this.numberOfEpisodes &&
+          other.status == this.status);
+}
+
+class SeriesTableCompanion extends UpdateCompanion<SeriesEntry> {
+  final Value<int> id;
+  final Value<bool?> adult;
+  final Value<String?> backdropPath;
+  final Value<String?> genreIds;
+  final Value<String?> originalLanguage;
+  final Value<String?> originalName;
+  final Value<String?> overview;
+  final Value<double?> popularity;
+  final Value<String?> posterPath;
+  final Value<DateTime?> firstAirDate;
+  final Value<String?> name;
+  final Value<double?> voteAverage;
+  final Value<int?> voteCount;
+  final Value<int?> numberOfSeasons;
+  final Value<int?> numberOfEpisodes;
+  final Value<String?> status;
+  const SeriesTableCompanion({
+    this.id = const Value.absent(),
+    this.adult = const Value.absent(),
+    this.backdropPath = const Value.absent(),
+    this.genreIds = const Value.absent(),
+    this.originalLanguage = const Value.absent(),
+    this.originalName = const Value.absent(),
+    this.overview = const Value.absent(),
+    this.popularity = const Value.absent(),
+    this.posterPath = const Value.absent(),
+    this.firstAirDate = const Value.absent(),
+    this.name = const Value.absent(),
+    this.voteAverage = const Value.absent(),
+    this.voteCount = const Value.absent(),
+    this.numberOfSeasons = const Value.absent(),
+    this.numberOfEpisodes = const Value.absent(),
+    this.status = const Value.absent(),
+  });
+  SeriesTableCompanion.insert({
+    this.id = const Value.absent(),
+    this.adult = const Value.absent(),
+    this.backdropPath = const Value.absent(),
+    this.genreIds = const Value.absent(),
+    this.originalLanguage = const Value.absent(),
+    this.originalName = const Value.absent(),
+    this.overview = const Value.absent(),
+    this.popularity = const Value.absent(),
+    this.posterPath = const Value.absent(),
+    this.firstAirDate = const Value.absent(),
+    this.name = const Value.absent(),
+    this.voteAverage = const Value.absent(),
+    this.voteCount = const Value.absent(),
+    this.numberOfSeasons = const Value.absent(),
+    this.numberOfEpisodes = const Value.absent(),
+    this.status = const Value.absent(),
+  });
+  static Insertable<SeriesEntry> custom({
+    Expression<int>? id,
+    Expression<bool>? adult,
+    Expression<String>? backdropPath,
+    Expression<String>? genreIds,
+    Expression<String>? originalLanguage,
+    Expression<String>? originalName,
+    Expression<String>? overview,
+    Expression<double>? popularity,
+    Expression<String>? posterPath,
+    Expression<DateTime>? firstAirDate,
+    Expression<String>? name,
+    Expression<double>? voteAverage,
+    Expression<int>? voteCount,
+    Expression<int>? numberOfSeasons,
+    Expression<int>? numberOfEpisodes,
+    Expression<String>? status,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (adult != null) 'adult': adult,
+      if (backdropPath != null) 'backdrop_path': backdropPath,
+      if (genreIds != null) 'genre_ids': genreIds,
+      if (originalLanguage != null) 'original_language': originalLanguage,
+      if (originalName != null) 'original_name': originalName,
+      if (overview != null) 'overview': overview,
+      if (popularity != null) 'popularity': popularity,
+      if (posterPath != null) 'poster_path': posterPath,
+      if (firstAirDate != null) 'first_air_date': firstAirDate,
+      if (name != null) 'name': name,
+      if (voteAverage != null) 'vote_average': voteAverage,
+      if (voteCount != null) 'vote_count': voteCount,
+      if (numberOfSeasons != null) 'number_of_seasons': numberOfSeasons,
+      if (numberOfEpisodes != null) 'number_of_episodes': numberOfEpisodes,
+      if (status != null) 'status': status,
+    });
+  }
+
+  SeriesTableCompanion copyWith({
+    Value<int>? id,
+    Value<bool?>? adult,
+    Value<String?>? backdropPath,
+    Value<String?>? genreIds,
+    Value<String?>? originalLanguage,
+    Value<String?>? originalName,
+    Value<String?>? overview,
+    Value<double?>? popularity,
+    Value<String?>? posterPath,
+    Value<DateTime?>? firstAirDate,
+    Value<String?>? name,
+    Value<double?>? voteAverage,
+    Value<int?>? voteCount,
+    Value<int?>? numberOfSeasons,
+    Value<int?>? numberOfEpisodes,
+    Value<String?>? status,
+  }) {
+    return SeriesTableCompanion(
+      id: id ?? this.id,
+      adult: adult ?? this.adult,
+      backdropPath: backdropPath ?? this.backdropPath,
+      genreIds: genreIds ?? this.genreIds,
+      originalLanguage: originalLanguage ?? this.originalLanguage,
+      originalName: originalName ?? this.originalName,
+      overview: overview ?? this.overview,
+      popularity: popularity ?? this.popularity,
+      posterPath: posterPath ?? this.posterPath,
+      firstAirDate: firstAirDate ?? this.firstAirDate,
+      name: name ?? this.name,
+      voteAverage: voteAverage ?? this.voteAverage,
+      voteCount: voteCount ?? this.voteCount,
+      numberOfSeasons: numberOfSeasons ?? this.numberOfSeasons,
+      numberOfEpisodes: numberOfEpisodes ?? this.numberOfEpisodes,
+      status: status ?? this.status,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (adult.present) {
+      map['adult'] = Variable<bool>(adult.value);
+    }
+    if (backdropPath.present) {
+      map['backdrop_path'] = Variable<String>(backdropPath.value);
+    }
+    if (genreIds.present) {
+      map['genre_ids'] = Variable<String>(genreIds.value);
+    }
+    if (originalLanguage.present) {
+      map['original_language'] = Variable<String>(originalLanguage.value);
+    }
+    if (originalName.present) {
+      map['original_name'] = Variable<String>(originalName.value);
+    }
+    if (overview.present) {
+      map['overview'] = Variable<String>(overview.value);
+    }
+    if (popularity.present) {
+      map['popularity'] = Variable<double>(popularity.value);
+    }
+    if (posterPath.present) {
+      map['poster_path'] = Variable<String>(posterPath.value);
+    }
+    if (firstAirDate.present) {
+      map['first_air_date'] = Variable<DateTime>(firstAirDate.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (voteAverage.present) {
+      map['vote_average'] = Variable<double>(voteAverage.value);
+    }
+    if (voteCount.present) {
+      map['vote_count'] = Variable<int>(voteCount.value);
+    }
+    if (numberOfSeasons.present) {
+      map['number_of_seasons'] = Variable<int>(numberOfSeasons.value);
+    }
+    if (numberOfEpisodes.present) {
+      map['number_of_episodes'] = Variable<int>(numberOfEpisodes.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SeriesTableCompanion(')
+          ..write('id: $id, ')
+          ..write('adult: $adult, ')
+          ..write('backdropPath: $backdropPath, ')
+          ..write('genreIds: $genreIds, ')
+          ..write('originalLanguage: $originalLanguage, ')
+          ..write('originalName: $originalName, ')
+          ..write('overview: $overview, ')
+          ..write('popularity: $popularity, ')
+          ..write('posterPath: $posterPath, ')
+          ..write('firstAirDate: $firstAirDate, ')
+          ..write('name: $name, ')
+          ..write('voteAverage: $voteAverage, ')
+          ..write('voteCount: $voteCount, ')
+          ..write('numberOfSeasons: $numberOfSeasons, ')
+          ..write('numberOfEpisodes: $numberOfEpisodes, ')
+          ..write('status: $status')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $MoviesTableTable moviesTable = $MoviesTableTable(this);
+  late final $SeriesTableTable seriesTable = $SeriesTableTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [moviesTable];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [
+    moviesTable,
+    seriesTable,
+  ];
 }
 
 typedef $$MoviesTableTableCreateCompanionBuilder =
@@ -1494,10 +2436,433 @@ typedef $$MoviesTableTableProcessedTableManager =
       MovieEntry,
       PrefetchHooks Function()
     >;
+typedef $$SeriesTableTableCreateCompanionBuilder =
+    SeriesTableCompanion Function({
+      Value<int> id,
+      Value<bool?> adult,
+      Value<String?> backdropPath,
+      Value<String?> genreIds,
+      Value<String?> originalLanguage,
+      Value<String?> originalName,
+      Value<String?> overview,
+      Value<double?> popularity,
+      Value<String?> posterPath,
+      Value<DateTime?> firstAirDate,
+      Value<String?> name,
+      Value<double?> voteAverage,
+      Value<int?> voteCount,
+      Value<int?> numberOfSeasons,
+      Value<int?> numberOfEpisodes,
+      Value<String?> status,
+    });
+typedef $$SeriesTableTableUpdateCompanionBuilder =
+    SeriesTableCompanion Function({
+      Value<int> id,
+      Value<bool?> adult,
+      Value<String?> backdropPath,
+      Value<String?> genreIds,
+      Value<String?> originalLanguage,
+      Value<String?> originalName,
+      Value<String?> overview,
+      Value<double?> popularity,
+      Value<String?> posterPath,
+      Value<DateTime?> firstAirDate,
+      Value<String?> name,
+      Value<double?> voteAverage,
+      Value<int?> voteCount,
+      Value<int?> numberOfSeasons,
+      Value<int?> numberOfEpisodes,
+      Value<String?> status,
+    });
+
+class $$SeriesTableTableFilterComposer
+    extends Composer<_$AppDatabase, $SeriesTableTable> {
+  $$SeriesTableTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get adult => $composableBuilder(
+    column: $table.adult,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get backdropPath => $composableBuilder(
+    column: $table.backdropPath,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get genreIds => $composableBuilder(
+    column: $table.genreIds,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get originalLanguage => $composableBuilder(
+    column: $table.originalLanguage,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get originalName => $composableBuilder(
+    column: $table.originalName,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get overview => $composableBuilder(
+    column: $table.overview,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get popularity => $composableBuilder(
+    column: $table.popularity,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get posterPath => $composableBuilder(
+    column: $table.posterPath,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get firstAirDate => $composableBuilder(
+    column: $table.firstAirDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get voteAverage => $composableBuilder(
+    column: $table.voteAverage,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get voteCount => $composableBuilder(
+    column: $table.voteCount,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get numberOfSeasons => $composableBuilder(
+    column: $table.numberOfSeasons,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get numberOfEpisodes => $composableBuilder(
+    column: $table.numberOfEpisodes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$SeriesTableTableOrderingComposer
+    extends Composer<_$AppDatabase, $SeriesTableTable> {
+  $$SeriesTableTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get adult => $composableBuilder(
+    column: $table.adult,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get backdropPath => $composableBuilder(
+    column: $table.backdropPath,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get genreIds => $composableBuilder(
+    column: $table.genreIds,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get originalLanguage => $composableBuilder(
+    column: $table.originalLanguage,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get originalName => $composableBuilder(
+    column: $table.originalName,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get overview => $composableBuilder(
+    column: $table.overview,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get popularity => $composableBuilder(
+    column: $table.popularity,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get posterPath => $composableBuilder(
+    column: $table.posterPath,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get firstAirDate => $composableBuilder(
+    column: $table.firstAirDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get voteAverage => $composableBuilder(
+    column: $table.voteAverage,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get voteCount => $composableBuilder(
+    column: $table.voteCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get numberOfSeasons => $composableBuilder(
+    column: $table.numberOfSeasons,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get numberOfEpisodes => $composableBuilder(
+    column: $table.numberOfEpisodes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$SeriesTableTableAnnotationComposer
+    extends Composer<_$AppDatabase, $SeriesTableTable> {
+  $$SeriesTableTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<bool> get adult =>
+      $composableBuilder(column: $table.adult, builder: (column) => column);
+
+  GeneratedColumn<String> get backdropPath => $composableBuilder(
+    column: $table.backdropPath,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get genreIds =>
+      $composableBuilder(column: $table.genreIds, builder: (column) => column);
+
+  GeneratedColumn<String> get originalLanguage => $composableBuilder(
+    column: $table.originalLanguage,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get originalName => $composableBuilder(
+    column: $table.originalName,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get overview =>
+      $composableBuilder(column: $table.overview, builder: (column) => column);
+
+  GeneratedColumn<double> get popularity => $composableBuilder(
+    column: $table.popularity,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get posterPath => $composableBuilder(
+    column: $table.posterPath,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get firstAirDate => $composableBuilder(
+    column: $table.firstAirDate,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<double> get voteAverage => $composableBuilder(
+    column: $table.voteAverage,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get voteCount =>
+      $composableBuilder(column: $table.voteCount, builder: (column) => column);
+
+  GeneratedColumn<int> get numberOfSeasons => $composableBuilder(
+    column: $table.numberOfSeasons,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get numberOfEpisodes => $composableBuilder(
+    column: $table.numberOfEpisodes,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+}
+
+class $$SeriesTableTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $SeriesTableTable,
+          SeriesEntry,
+          $$SeriesTableTableFilterComposer,
+          $$SeriesTableTableOrderingComposer,
+          $$SeriesTableTableAnnotationComposer,
+          $$SeriesTableTableCreateCompanionBuilder,
+          $$SeriesTableTableUpdateCompanionBuilder,
+          (
+            SeriesEntry,
+            BaseReferences<_$AppDatabase, $SeriesTableTable, SeriesEntry>,
+          ),
+          SeriesEntry,
+          PrefetchHooks Function()
+        > {
+  $$SeriesTableTableTableManager(_$AppDatabase db, $SeriesTableTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SeriesTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SeriesTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SeriesTableTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<bool?> adult = const Value.absent(),
+                Value<String?> backdropPath = const Value.absent(),
+                Value<String?> genreIds = const Value.absent(),
+                Value<String?> originalLanguage = const Value.absent(),
+                Value<String?> originalName = const Value.absent(),
+                Value<String?> overview = const Value.absent(),
+                Value<double?> popularity = const Value.absent(),
+                Value<String?> posterPath = const Value.absent(),
+                Value<DateTime?> firstAirDate = const Value.absent(),
+                Value<String?> name = const Value.absent(),
+                Value<double?> voteAverage = const Value.absent(),
+                Value<int?> voteCount = const Value.absent(),
+                Value<int?> numberOfSeasons = const Value.absent(),
+                Value<int?> numberOfEpisodes = const Value.absent(),
+                Value<String?> status = const Value.absent(),
+              }) => SeriesTableCompanion(
+                id: id,
+                adult: adult,
+                backdropPath: backdropPath,
+                genreIds: genreIds,
+                originalLanguage: originalLanguage,
+                originalName: originalName,
+                overview: overview,
+                popularity: popularity,
+                posterPath: posterPath,
+                firstAirDate: firstAirDate,
+                name: name,
+                voteAverage: voteAverage,
+                voteCount: voteCount,
+                numberOfSeasons: numberOfSeasons,
+                numberOfEpisodes: numberOfEpisodes,
+                status: status,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<bool?> adult = const Value.absent(),
+                Value<String?> backdropPath = const Value.absent(),
+                Value<String?> genreIds = const Value.absent(),
+                Value<String?> originalLanguage = const Value.absent(),
+                Value<String?> originalName = const Value.absent(),
+                Value<String?> overview = const Value.absent(),
+                Value<double?> popularity = const Value.absent(),
+                Value<String?> posterPath = const Value.absent(),
+                Value<DateTime?> firstAirDate = const Value.absent(),
+                Value<String?> name = const Value.absent(),
+                Value<double?> voteAverage = const Value.absent(),
+                Value<int?> voteCount = const Value.absent(),
+                Value<int?> numberOfSeasons = const Value.absent(),
+                Value<int?> numberOfEpisodes = const Value.absent(),
+                Value<String?> status = const Value.absent(),
+              }) => SeriesTableCompanion.insert(
+                id: id,
+                adult: adult,
+                backdropPath: backdropPath,
+                genreIds: genreIds,
+                originalLanguage: originalLanguage,
+                originalName: originalName,
+                overview: overview,
+                popularity: popularity,
+                posterPath: posterPath,
+                firstAirDate: firstAirDate,
+                name: name,
+                voteAverage: voteAverage,
+                voteCount: voteCount,
+                numberOfSeasons: numberOfSeasons,
+                numberOfEpisodes: numberOfEpisodes,
+                status: status,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$SeriesTableTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $SeriesTableTable,
+      SeriesEntry,
+      $$SeriesTableTableFilterComposer,
+      $$SeriesTableTableOrderingComposer,
+      $$SeriesTableTableAnnotationComposer,
+      $$SeriesTableTableCreateCompanionBuilder,
+      $$SeriesTableTableUpdateCompanionBuilder,
+      (
+        SeriesEntry,
+        BaseReferences<_$AppDatabase, $SeriesTableTable, SeriesEntry>,
+      ),
+      SeriesEntry,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
   $AppDatabaseManager(this._db);
   $$MoviesTableTableTableManager get moviesTable =>
       $$MoviesTableTableTableManager(_db, _db.moviesTable);
+  $$SeriesTableTableTableManager get seriesTable =>
+      $$SeriesTableTableTableManager(_db, _db.seriesTable);
 }

@@ -4,7 +4,7 @@ import 'package:clappy/presentation/widgets/shared/app_network_image.dart';
 
 class CastCard extends StatelessWidget {
   const CastCard({
-    super.key, 
+    super.key,
     required this.title,
     required this.photoPath,
     required this.subtitle,
@@ -18,7 +18,6 @@ class CastCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Semantics(
       button: true,
       label: title,
@@ -54,12 +53,12 @@ class CastCard extends StatelessWidget {
                 ),
                 Flexible(
                   child: Text(
-                      subtitle,
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    subtitle,
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),

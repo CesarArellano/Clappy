@@ -31,14 +31,17 @@ void main() {
     final movie = _buildMovie();
 
     await tester.pumpWidget(
-      MaterialApp(home: Scaffold(body: MoviePosterLink(movie: movie))),
+      MaterialApp(
+        home: Scaffold(body: MoviePosterLink(movie: movie)),
+      ),
     );
     await tester.pump();
 
     expect(find.byType(AppNetworkImage), findsOneWidget);
     expect(
       find.byWidgetPredicate(
-        (widget) => widget is Semantics && widget.properties.label == 'Interstellar',
+        (widget) =>
+            widget is Semantics && widget.properties.label == 'Interstellar',
       ),
       findsOneWidget,
     );

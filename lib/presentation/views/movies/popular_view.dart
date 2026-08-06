@@ -41,11 +41,14 @@ class _PopularMovies extends ConsumerWidget {
       return MasonrySkeleton(topPadding: topPadding);
     }
 
-    return MovieMasonry(
-      loadNextPage: () =>
-          ref.read(popularMoviesProvider.notifier).loadNextPage(),
-      movies: popularMovies,
-      topPadding: topPadding,
+    return RefreshIndicator(
+      onRefresh: () => ref.read(popularMoviesProvider.notifier).refresh(),
+      child: MovieMasonry(
+        loadNextPage: () =>
+            ref.read(popularMoviesProvider.notifier).loadNextPage(),
+        movies: popularMovies,
+        topPadding: topPadding,
+      ),
     );
   }
 }
@@ -62,11 +65,14 @@ class _PopularSeries extends ConsumerWidget {
     // must always mount so its initState can lazy-load the list — gating on
     // isEmpty at this level would return a bare loader forever, since
     // SeriesMasonry (and its self-bootstrap) would never get built.
-    return SeriesMasonry(
-      loadNextPage: () =>
-          ref.read(popularSeriesProvider.notifier).loadNextPage(),
-      series: popularSeries,
-      topPadding: topPadding,
+    return RefreshIndicator(
+      onRefresh: () => ref.read(popularSeriesProvider.notifier).refresh(),
+      child: SeriesMasonry(
+        loadNextPage: () =>
+            ref.read(popularSeriesProvider.notifier).loadNextPage(),
+        series: popularSeries,
+        topPadding: topPadding,
+      ),
     );
   }
 }

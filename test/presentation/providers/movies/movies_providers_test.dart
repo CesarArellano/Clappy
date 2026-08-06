@@ -24,25 +24,28 @@ Movie _buildMovie(int id) => Movie(
 
 void main() {
   group('MoviesNotifier.loadNextPage', () {
-    test('appends fetched movies to state and increments currentPage', () async {
-      final calledPages = <int>[];
-      final notifier = MoviesNotifier(
-        fetchMoreMovies: ({int page = 1}) async {
-          calledPages.add(page);
-          return [_buildMovie(page)];
-        },
-      );
+    test(
+      'appends fetched movies to state and increments currentPage',
+      () async {
+        final calledPages = <int>[];
+        final notifier = MoviesNotifier(
+          fetchMoreMovies: ({int page = 1}) async {
+            calledPages.add(page);
+            return [_buildMovie(page)];
+          },
+        );
 
-      await notifier.loadNextPage();
-      expect(notifier.state.map((m) => m.id), [1]);
-      expect(notifier.currentPage, 1);
+        await notifier.loadNextPage();
+        expect(notifier.state.map((m) => m.id), [1]);
+        expect(notifier.currentPage, 1);
 
-      await notifier.loadNextPage();
-      expect(notifier.state.map((m) => m.id), [1, 2]);
-      expect(notifier.currentPage, 2);
+        await notifier.loadNextPage();
+        expect(notifier.state.map((m) => m.id), [1, 2]);
+        expect(notifier.currentPage, 2);
 
-      expect(calledPages, [1, 2]);
-    });
+        expect(calledPages, [1, 2]);
+      },
+    );
 
     test('a call while already loading is a no-op', () async {
       var fetchCount = 0;

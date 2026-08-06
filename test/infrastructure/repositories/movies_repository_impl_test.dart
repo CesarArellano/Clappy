@@ -101,9 +101,7 @@ void main() {
 
   test('getSimilarMovies delegates to datasource.getSimilarMovies', () async {
     final movies = [_buildMovie()];
-    when(
-      () => datasource.getSimilarMovies(42),
-    ).thenAnswer((_) async => movies);
+    when(() => datasource.getSimilarMovies(42)).thenAnswer((_) async => movies);
 
     final result = await repository.getSimilarMovies(42);
 

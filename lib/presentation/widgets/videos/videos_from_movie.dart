@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -7,6 +9,7 @@ import '../../../config/network/network_exceptions.dart';
 import '../../../domain/entities/entities.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../providers/providers.dart';
+import '../shared/app_network_image.dart';
 import '../shared/error_state.dart';
 
 final FutureProviderFamily<List<Video>, int> videosFromMovieProvider =
@@ -41,17 +44,25 @@ class VideosFromMovie extends ConsumerWidget {
   }
 }
 
-class _VideosList extends StatelessWidget {
+class _VideosList extends StatefulWidget {
   const _VideosList({required this.videos});
 
   final List<Video> videos;
 
   @override
+  State<_VideosList> createState() => _VideosListState();
+}
+
+class _VideosListState extends State<_VideosList> {
+  int _selectedIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
-    //* Nada que mostrar
-    if (videos.isEmpty) {
+    if (widget.videos.isEmpty) {
       return const SizedBox();
     }
+
+    final selected = widget.videos[_selectedIndex];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,21 +74,79 @@ class _VideosList extends StatelessWidget {
             style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
         ),
-
-        //* Aunque tengo varios videos, sólo quiero mostrar el primero
         _YouTubeVideoPlayer(
-          youtubeId: videos.first.youtubeKey,
-          name: videos.first.name,
+          youtubeId: selected.youtubeKey,
+          name: selected.name,
         ),
-
-        //* Si se desean mostrar todos los videos
-        // ...videos.map(
-        //   (video) => _YouTubeVideoPlayer(
-        //     youtubeId: video.youtubeKey,
-        //     name: video.name,
-        //   ),
-        // ),
+        if (widget.videos.length > 1) ...[
+          const SizedBox(height: 8),
+          _VideoThumbnailList(
+            videos: widget.videos,
+            selectedIndex: _selectedIndex,
+            onSelect: (index) => setState(() => _selectedIndex = index),
+          ),
+        ],
       ],
+    );
+  }
+}
+
+class _VideoThumbnailList extends StatelessWidget {
+  const _VideoThumbnailList({
+    required this.videos,
+    required this.selectedIndex,
+    required this.onSelect,
+  });
+
+  final List<Video> videos;
+  final int selectedIndex;
+  final ValueChanged<int> onSelect;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 100,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        itemCount: videos.length,
+        itemBuilder: (context, index) {
+          final video = videos[index];
+          final isSelected = index == selectedIndex;
+
+          return Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: Semantics(
+              button: true,
+              label: video.name,
+              selected: isSelected,
+              child: GestureDetector(
+                onTap: () => onSelect(index),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: isSelected
+                          ? Border.all(
+                              color: Theme.of(context).colorScheme.primary,
+                              width: 2,
+                            )
+                          : null,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: AppNetworkImage(
+                      imageUrl:
+                          'https://img.youtube.com/vi/${video.youtubeKey}/hqdefault.jpg',
+                      width: 160,
+                      height: 90,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -93,19 +162,32 @@ class _YouTubeVideoPlayer extends StatefulWidget {
 }
 
 class _YouTubeVideoPlayerState extends State<_YouTubeVideoPlayer> {
-  late YoutubePlayerController _controller;
+  // The controller is created once and reused: [YoutubePlayer] captures it in
+  // its own initState and ignores later controller swaps, so replacing it here
+  // would leave the WebView bound to a closed controller and every JS call on
+  // the new one would hang until the 30s readiness timeout.
+  late final YoutubePlayerController _controller =
+      YoutubePlayerController.fromVideoId(videoId: widget.youtubeId);
 
   @override
-  void initState() {
-    super.initState();
+  void didUpdateWidget(covariant _YouTubeVideoPlayer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.youtubeId != oldWidget.youtubeId) {
+      unawaited(_loadSelectedVideo());
+    }
+  }
 
-    _controller = YoutubePlayerController.fromVideoId(
-      videoId: widget.youtubeId,
-    );
+  Future<void> _loadSelectedVideo() async {
+    try {
+      await _controller.loadVideoById(videoId: widget.youtubeId);
+    } on Object catch (error) {
+      debugPrint('Failed to load YouTube video ${widget.youtubeId}: $error');
+    }
   }
 
   @override
   void dispose() {
+    _controller.close();
     super.dispose();
   }
 

@@ -19,7 +19,9 @@ class MovieDbDatasource implements MoviesDatasource {
 
     final List<Movie> movies = movieDbResponse.results
         .map((movieDb) => MovieMapper.movieDBToEntity(movieDb))
-        .where((movieDb) => movieDb.posterPath != ImagePlaceholders.posterNotFound)
+        .where(
+          (movieDb) => movieDb.posterPath != ImagePlaceholders.posterNotFound,
+        )
         .toList();
 
     return movies;

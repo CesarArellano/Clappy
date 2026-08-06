@@ -416,6 +416,12 @@ abstract class AppLocalizations {
   /// **'You don\'t have favorite movies'**
   String get noFavoriteMovies;
 
+  /// No description provided for @noFavoriteSeries.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have favorite series'**
+  String get noFavoriteSeries;
+
   /// No description provided for @startSearching.
   ///
   /// In en, this message translates to:
