@@ -15,13 +15,17 @@ class MoviePosterLink extends StatelessWidget {
   Widget build(BuildContext context) {
     return FadeInUp(
       duration: const Duration(milliseconds: 600),
-      child: GestureDetector(
-        onTap: () => context.push('/home/0/movie/${movie.id}'),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: AppNetworkImage(
-            imageUrl: movie.posterPath.nonNullValue(),
-            width: MediaQuery.sizeOf(context).width / 3,
+      child: Semantics(
+        button: true,
+        label: movie.title.nonNullValue(),
+        child: GestureDetector(
+          onTap: () => context.push('/home/0/movie/${movie.id}'),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: AppNetworkImage(
+              imageUrl: movie.posterPath.nonNullValue(),
+              width: MediaQuery.sizeOf(context).width / 3,
+            ),
           ),
         ),
       ),

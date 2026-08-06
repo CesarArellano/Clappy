@@ -16,26 +16,30 @@ class PersonCard extends StatelessWidget {
 
     return FadeInUp(
       duration: const Duration(milliseconds: 600),
-      child: GestureDetector(
-        onTap: () => context.push('/home/0/person/${person.id}'),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: AppNetworkImage(
-                imageUrl: person.profilePath,
-                width: MediaQuery.sizeOf(context).width / 3,
+      child: Semantics(
+        button: true,
+        label: person.name,
+        child: GestureDetector(
+          onTap: () => context.push('/home/0/person/${person.id}'),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: AppNetworkImage(
+                  imageUrl: person.profilePath,
+                  width: MediaQuery.sizeOf(context).width / 3,
+                ),
               ),
-            ),
-            const SizedBox(height: 5),
-            Text(
-              person.name,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: textTheme.titleSmall,
-            ),
-          ],
+              const SizedBox(height: 5),
+              Text(
+                person.name,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.titleSmall,
+              ),
+            ],
+          ),
         ),
       ),
     );

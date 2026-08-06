@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../config/extensions/network_exception_extensions.dart';
 import '../../../config/extensions/null_extensions.dart';
+import '../../../config/network/network_exceptions.dart';
 import '../../../domain/entities/movie_credit.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../providers/providers.dart';
 import '../shared/cast_card.dart';
+import '../shared/error_state.dart';
 import '../shared/skeleton_placeholders.dart';
 
 final personMovieCreditsProvider = FutureProvider.family((ref, int personId) {
@@ -25,9 +28,15 @@ class PersonMovieCredits extends ConsumerWidget {
 
     return creditsFuture.when(
       data: (credits) => _CreditsList(credits: credits),
-      error: (_, _) => Center(
-        child: Text(AppLocalizations.of(context)!.couldNotLoadContent),
-      ),
+      error: (err, _) {
+        final l10n = AppLocalizations.of(context)!;
+        return ErrorStateWidget(
+          message: err is NetworkException
+              ? err.localizedMessage(l10n)
+              : l10n.couldNotLoadContent,
+          onRetry: () => ref.invalidate(personMovieCreditsProvider(personId)),
+        );
+      },
       loading: () => const CastListSkeleton(titleWidth: 94),
     );
   }

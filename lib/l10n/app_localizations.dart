@@ -428,6 +428,78 @@ abstract class AppLocalizations {
   /// **'Couldn\'t load content'**
   String get couldNotLoadContent;
 
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @networkErrorTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'The connection timed out, please try again.'**
+  String get networkErrorTimeout;
+
+  /// No description provided for @networkErrorNoConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not connect, please check your internet connection.'**
+  String get networkErrorNoConnection;
+
+  /// No description provided for @networkErrorCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'The request was cancelled.'**
+  String get networkErrorCancelled;
+
+  /// No description provided for @networkErrorBadCertificate.
+  ///
+  /// In en, this message translates to:
+  /// **'The server certificate could not be verified.'**
+  String get networkErrorBadCertificate;
+
+  /// No description provided for @networkErrorBadRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Bad request.'**
+  String get networkErrorBadRequest;
+
+  /// No description provided for @networkErrorUnauthorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid or missing API key.'**
+  String get networkErrorUnauthorized;
+
+  /// No description provided for @networkErrorForbidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Access to this resource is denied.'**
+  String get networkErrorForbidden;
+
+  /// No description provided for @networkErrorNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'The requested resource was not found.'**
+  String get networkErrorNotFound;
+
+  /// No description provided for @networkErrorRateLimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many requests, please slow down.'**
+  String get networkErrorRateLimited;
+
+  /// No description provided for @networkErrorServerError.
+  ///
+  /// In en, this message translates to:
+  /// **'Server error, please try again later.'**
+  String get networkErrorServerError;
+
+  /// No description provided for @networkErrorUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Something unexpected happened, please try again.'**
+  String get networkErrorUnknown;
+
   /// No description provided for @preferencesTitle.
   ///
   /// In en, this message translates to:

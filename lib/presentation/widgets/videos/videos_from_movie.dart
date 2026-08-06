@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../../../config/extensions/network_exception_extensions.dart';
+import '../../../config/network/network_exceptions.dart';
 import '../../../domain/entities/entities.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../providers/providers.dart';
+import '../shared/error_state.dart';
 
 final FutureProviderFamily<List<Video>, int> videosFromMovieProvider =
     FutureProvider.family((ref, int movieId) {
@@ -23,9 +26,15 @@ class VideosFromMovie extends ConsumerWidget {
 
     return moviesFromVideo.when(
       data: (videos) => _VideosList(videos: videos),
-      error: (_, _) => Center(
-        child: Text(AppLocalizations.of(context)!.couldNotLoadContent),
-      ),
+      error: (err, _) {
+        final l10n = AppLocalizations.of(context)!;
+        return ErrorStateWidget(
+          message: err is NetworkException
+              ? err.localizedMessage(l10n)
+              : l10n.couldNotLoadContent,
+          onRetry: () => ref.invalidate(videosFromMovieProvider(movieId)),
+        );
+      },
       loading: () =>
           const Center(child: CircularProgressIndicator(strokeWidth: 2)),
     );

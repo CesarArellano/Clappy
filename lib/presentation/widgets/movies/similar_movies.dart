@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../config/extensions/network_exception_extensions.dart';
+import '../../../config/network/network_exceptions.dart';
 import '../../../domain/entities/entities.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../providers/providers.dart';
@@ -22,9 +24,15 @@ class SimilarMovies extends ConsumerWidget {
 
     return similarMoviesFuture.when(
       data: (movies) => _Recommendations(movies: movies),
-      error: (_, _) => Center(
-        child: Text(AppLocalizations.of(context)!.couldNotLoadContent),
-      ),
+      error: (err, _) {
+        final l10n = AppLocalizations.of(context)!;
+        return ErrorStateWidget(
+          message: err is NetworkException
+              ? err.localizedMessage(l10n)
+              : l10n.couldNotLoadContent,
+          onRetry: () => ref.invalidate(similarMoviesProvider(movieId)),
+        );
+      },
       loading: () => HorizontalContentSkeleton(
         title: AppLocalizations.of(context)!.recommendations,
       ),

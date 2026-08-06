@@ -143,14 +143,18 @@ class _Slide extends StatelessWidget {
           SizedBox(
             height: 200,
             child: Center(
-              child: GestureDetector(
-                onTap: () => context.push('/home/0/series/${series.id}'),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: AppNetworkImage(
-                    imageUrl: series.posterPath.nonNullValue(),
-                    width: 150,
-                    height: 200,
+              child: Semantics(
+                button: true,
+                label: series.name.nonNullValue(),
+                child: GestureDetector(
+                  onTap: () => context.push('/home/0/series/${series.id}'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: AppNetworkImage(
+                      imageUrl: series.posterPath.nonNullValue(),
+                      width: 150,
+                      height: 200,
+                    ),
                   ),
                 ),
               ),

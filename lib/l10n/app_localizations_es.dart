@@ -176,6 +176,49 @@ class AppLocalizationsEs extends AppLocalizations {
   String get couldNotLoadContent => 'No se pudo cargar el contenido';
 
   @override
+  String get retry => 'Reintentar';
+
+  @override
+  String get networkErrorTimeout =>
+      'La conexión tardó demasiado, inténtalo de nuevo.';
+
+  @override
+  String get networkErrorNoConnection =>
+      'No se pudo conectar, revisa tu conexión a internet.';
+
+  @override
+  String get networkErrorCancelled => 'La solicitud fue cancelada.';
+
+  @override
+  String get networkErrorBadCertificate =>
+      'No se pudo verificar el certificado del servidor.';
+
+  @override
+  String get networkErrorBadRequest => 'Solicitud inválida.';
+
+  @override
+  String get networkErrorUnauthorized =>
+      'La clave de API es inválida o no existe.';
+
+  @override
+  String get networkErrorForbidden => 'El acceso a este recurso está denegado.';
+
+  @override
+  String get networkErrorNotFound => 'No se encontró el recurso solicitado.';
+
+  @override
+  String get networkErrorRateLimited =>
+      'Demasiadas solicitudes, inténtalo más despacio.';
+
+  @override
+  String get networkErrorServerError =>
+      'Error del servidor, inténtalo de nuevo más tarde.';
+
+  @override
+  String get networkErrorUnknown =>
+      'Ocurrió algo inesperado, inténtalo de nuevo.';
+
+  @override
   String get preferencesTitle => 'Preferencias';
 
   @override

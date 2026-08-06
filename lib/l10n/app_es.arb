@@ -63,6 +63,19 @@
   "startSearching": "Empieza a buscar",
 
   "couldNotLoadContent": "No se pudo cargar el contenido",
+  "retry": "Reintentar",
+
+  "networkErrorTimeout": "La conexión tardó demasiado, inténtalo de nuevo.",
+  "networkErrorNoConnection": "No se pudo conectar, revisa tu conexión a internet.",
+  "networkErrorCancelled": "La solicitud fue cancelada.",
+  "networkErrorBadCertificate": "No se pudo verificar el certificado del servidor.",
+  "networkErrorBadRequest": "Solicitud inválida.",
+  "networkErrorUnauthorized": "La clave de API es inválida o no existe.",
+  "networkErrorForbidden": "El acceso a este recurso está denegado.",
+  "networkErrorNotFound": "No se encontró el recurso solicitado.",
+  "networkErrorRateLimited": "Demasiadas solicitudes, inténtalo más despacio.",
+  "networkErrorServerError": "Error del servidor, inténtalo de nuevo más tarde.",
+  "networkErrorUnknown": "Ocurrió algo inesperado, inténtalo de nuevo.",
 
   "preferencesTitle": "Preferencias",
   "themeLabel": "Tema",

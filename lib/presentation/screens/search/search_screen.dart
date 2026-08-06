@@ -118,8 +118,11 @@ class _MoviesResults extends ConsumerWidget {
     }
 
     if (controller.hasError) {
-      return Center(
-        child: Text(AppLocalizations.of(context)!.couldNotLoadContent),
+      return ErrorStateWidget(
+        message: AppLocalizations.of(context)!.couldNotLoadContent,
+        onRetry: () => ref
+            .read(searchControllerProvider.notifier)
+            .onQueryChanged(controller.query),
       );
     }
 
@@ -162,8 +165,11 @@ class _SeriesResults extends ConsumerWidget {
     }
 
     if (controller.hasError) {
-      return Center(
-        child: Text(AppLocalizations.of(context)!.couldNotLoadContent),
+      return ErrorStateWidget(
+        message: AppLocalizations.of(context)!.couldNotLoadContent,
+        onRetry: () => ref
+            .read(searchControllerProvider.notifier)
+            .onQueryChanged(controller.query),
       );
     }
 

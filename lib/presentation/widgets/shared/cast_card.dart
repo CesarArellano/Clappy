@@ -19,46 +19,50 @@ class CastCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return GestureDetector(
-      onTap: onTap,
-      child: SizedBox(
-        width: 140,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          elevation: 4,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: AppNetworkImage(
-                  imageUrl: photoPath,
-                  width: double.infinity,
-                  height: 160,
-                  cacheWidth: 150,
+    return Semantics(
+      button: true,
+      label: title,
+      child: GestureDetector(
+        onTap: onTap,
+        child: SizedBox(
+          width: 140,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            elevation: 4,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: AppNetworkImage(
+                    imageUrl: photoPath,
+                    width: double.infinity,
+                    height: 160,
+                    cacheWidth: 150,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Flexible(
-                child: Text(
-                  title,
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              Flexible(
-                child: Text(
-                    subtitle,
-                    maxLines: 2,
+                const SizedBox(height: 8),
+                Flexible(
+                  child: Text(
+                    title,
+                    maxLines: 1,
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-              ),
-            ],
+                ),
+                Flexible(
+                  child: Text(
+                      subtitle,
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -270,9 +270,13 @@ class _Slide extends StatelessWidget {
               Positioned.fill(
                 child: Material(
                   color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(20),
-                    onTap: () => context.push(slide.routePath),
+                  child: Semantics(
+                    button: true,
+                    label: slide.title,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(20),
+                      onTap: () => context.push(slide.routePath),
+                    ),
                   ),
                 ),
               ),

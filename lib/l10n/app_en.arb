@@ -68,6 +68,19 @@
   "startSearching": "Start searching",
 
   "couldNotLoadContent": "Couldn't load content",
+  "retry": "Retry",
+
+  "networkErrorTimeout": "The connection timed out, please try again.",
+  "networkErrorNoConnection": "Could not connect, please check your internet connection.",
+  "networkErrorCancelled": "The request was cancelled.",
+  "networkErrorBadCertificate": "The server certificate could not be verified.",
+  "networkErrorBadRequest": "Bad request.",
+  "networkErrorUnauthorized": "Invalid or missing API key.",
+  "networkErrorForbidden": "Access to this resource is denied.",
+  "networkErrorNotFound": "The requested resource was not found.",
+  "networkErrorRateLimited": "Too many requests, please slow down.",
+  "networkErrorServerError": "Server error, please try again later.",
+  "networkErrorUnknown": "Something unexpected happened, please try again.",
 
   "preferencesTitle": "Preferences",
   "themeLabel": "Theme",

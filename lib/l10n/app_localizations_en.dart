@@ -176,6 +176,46 @@ class AppLocalizationsEn extends AppLocalizations {
   String get couldNotLoadContent => 'Couldn\'t load content';
 
   @override
+  String get retry => 'Retry';
+
+  @override
+  String get networkErrorTimeout =>
+      'The connection timed out, please try again.';
+
+  @override
+  String get networkErrorNoConnection =>
+      'Could not connect, please check your internet connection.';
+
+  @override
+  String get networkErrorCancelled => 'The request was cancelled.';
+
+  @override
+  String get networkErrorBadCertificate =>
+      'The server certificate could not be verified.';
+
+  @override
+  String get networkErrorBadRequest => 'Bad request.';
+
+  @override
+  String get networkErrorUnauthorized => 'Invalid or missing API key.';
+
+  @override
+  String get networkErrorForbidden => 'Access to this resource is denied.';
+
+  @override
+  String get networkErrorNotFound => 'The requested resource was not found.';
+
+  @override
+  String get networkErrorRateLimited => 'Too many requests, please slow down.';
+
+  @override
+  String get networkErrorServerError => 'Server error, please try again later.';
+
+  @override
+  String get networkErrorUnknown =>
+      'Something unexpected happened, please try again.';
+
+  @override
   String get preferencesTitle => 'Preferences';
 
   @override
