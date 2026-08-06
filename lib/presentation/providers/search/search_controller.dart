@@ -11,21 +11,25 @@ class SearchControllerState {
     this.query = '',
     this.category = ContentType.movies,
     this.isLoading = false,
+    this.hasError = false,
   });
 
   final String query;
   final ContentType category;
   final bool isLoading;
+  final bool hasError;
 
   SearchControllerState copyWith({
     String? query,
     ContentType? category,
     bool? isLoading,
+    bool? hasError,
   }) {
     return SearchControllerState(
       query: query ?? this.query,
       category: category ?? this.category,
       isLoading: isLoading ?? this.isLoading,
+      hasError: hasError ?? this.hasError,
     );
   }
 }
@@ -66,21 +70,27 @@ class SearchController extends StateNotifier<SearchControllerState> {
 
   Future<void> _performSearch(String query) async {
     if (query.isEmpty) return;
-    state = state.copyWith(isLoading: true);
+    state = state.copyWith(isLoading: true, hasError: false);
 
-    switch (state.category) {
-      case ContentType.movies:
-        await _ref
-            .read(searchedMoviesProvider.notifier)
-            .searchMoviesByQuery(query);
-      case ContentType.series:
-        await _ref
-            .read(searchedSeriesProvider.notifier)
-            .searchSeriesByQuery(query);
-    }
-
-    if (mounted) {
-      state = state.copyWith(isLoading: false);
+    try {
+      switch (state.category) {
+        case ContentType.movies:
+          await _ref
+              .read(searchedMoviesProvider.notifier)
+              .searchMoviesByQuery(query);
+        case ContentType.series:
+          await _ref
+              .read(searchedSeriesProvider.notifier)
+              .searchSeriesByQuery(query);
+      }
+    } catch (_) {
+      if (mounted) {
+        state = state.copyWith(hasError: true);
+      }
+    } finally {
+      if (mounted) {
+        state = state.copyWith(isLoading: false);
+      }
     }
   }
 

@@ -1,3 +1,4 @@
+import '../../config/constants/image_placeholders.dart';
 import '../../config/network/network_service.dart';
 import '../../domain/datasources/movies_datasource.dart';
 import '../../domain/entities/movie.dart';
@@ -18,7 +19,7 @@ class MovieDbDatasource implements MoviesDatasource {
 
     final List<Movie> movies = movieDbResponse.results
         .map((movieDb) => MovieMapper.movieDBToEntity(movieDb))
-        .where((movieDb) => movieDb.posterPath != 'no-poster')
+        .where((movieDb) => movieDb.posterPath != ImagePlaceholders.posterNotFound)
         .toList();
 
     return movies;

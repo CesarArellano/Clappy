@@ -117,6 +117,12 @@ class _MoviesResults extends ConsumerWidget {
       return const EmptyContainer();
     }
 
+    if (controller.hasError) {
+      return Center(
+        child: Text(AppLocalizations.of(context)!.couldNotLoadContent),
+      );
+    }
+
     if (controller.isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -153,6 +159,12 @@ class _SeriesResults extends ConsumerWidget {
 
     if (controller.query.isEmpty) {
       return const EmptyContainer();
+    }
+
+    if (controller.hasError) {
+      return Center(
+        child: Text(AppLocalizations.of(context)!.couldNotLoadContent),
+      );
     }
 
     if (controller.isLoading) {

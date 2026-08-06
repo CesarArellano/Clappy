@@ -1,4 +1,5 @@
 import 'package:clappy/config/constants/image_placeholders.dart';
+import 'package:clappy/config/constants/tmdb_image.dart';
 import 'package:clappy/domain/entities/movie.dart';
 import 'package:clappy/infrastructure/models/moviedb/movie_details.dart';
 import 'package:clappy/infrastructure/models/moviedb/movie_moviedb.dart';
@@ -7,7 +8,7 @@ class MovieMapper {
   static Movie movieDBToEntity(MovieMovieDB movieDb) => Movie(
     adult: movieDb.adult,
     backdropPath: (movieDb.backdropPath != '')
-        ? 'https://image.tmdb.org/t/p/w500${movieDb.backdropPath}'
+        ? '${TmdbImage.baseUrlW500}${movieDb.backdropPath}'
         : ImagePlaceholders.posterNotFound,
     genreIds: [...movieDb.genreIds.map((genreId) => genreId.toString())],
     id: movieDb.id,
@@ -16,8 +17,8 @@ class MovieMapper {
     overview: movieDb.overview,
     popularity: movieDb.popularity,
     posterPath: (movieDb.posterPath != '')
-        ? 'https://image.tmdb.org/t/p/w500${movieDb.posterPath}'
-        : 'no-poster',
+        ? '${TmdbImage.baseUrlW500}${movieDb.posterPath}'
+        : ImagePlaceholders.posterNotFound,
     releaseDate: movieDb.releaseDate,
     title: movieDb.title,
     video: movieDb.video,
@@ -31,7 +32,7 @@ class MovieMapper {
   static Movie movieDetailsToEntity(MovieDetails movieDb) => Movie(
     adult: movieDb.adult,
     backdropPath: (movieDb.backdropPath != '')
-        ? 'https://image.tmdb.org/t/p/w500${movieDb.backdropPath}'
+        ? '${TmdbImage.baseUrlW500}${movieDb.backdropPath}'
         : ImagePlaceholders.posterNotFound,
     genreIds: [...(movieDb.genres ?? []).map((genre) => genre.name ?? '')],
     id: movieDb.id,
@@ -40,7 +41,7 @@ class MovieMapper {
     overview: movieDb.overview,
     popularity: movieDb.popularity,
     posterPath: (movieDb.posterPath != '')
-        ? 'https://image.tmdb.org/t/p/w500${movieDb.posterPath}'
+        ? '${TmdbImage.baseUrlW500}${movieDb.posterPath}'
         : ImagePlaceholders.posterNotFound,
     releaseDate: movieDb.releaseDate,
     title: movieDb.title,

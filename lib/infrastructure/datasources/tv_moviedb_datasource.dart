@@ -1,3 +1,4 @@
+import '../../config/constants/image_placeholders.dart';
 import '../../config/network/network_service.dart';
 import '../../domain/datasources/series_datasource.dart';
 import '../../domain/entities/actor.dart';
@@ -18,7 +19,7 @@ class TvMovieDbDatasource implements SeriesDatasource {
 
     final List<TvShow> tvShows = tvDbResponse.results
         .map((tvDb) => TvMapper.tvDBToEntity(tvDb))
-        .where((tvDb) => tvDb.posterPath != 'no-poster')
+        .where((tvDb) => tvDb.posterPath != ImagePlaceholders.posterNotFound)
         .toList();
 
     return tvShows;

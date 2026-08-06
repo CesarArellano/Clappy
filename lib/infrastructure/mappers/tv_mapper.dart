@@ -1,4 +1,5 @@
 import '../../config/constants/image_placeholders.dart';
+import '../../config/constants/tmdb_image.dart';
 import '../../domain/entities/tv_season.dart';
 import '../../domain/entities/tv_show.dart';
 import '../models/moviedb/tv_details.dart';
@@ -8,7 +9,7 @@ class TvMapper {
   static TvShow tvDBToEntity(TvMovieDB tvDb) => TvShow(
     adult: tvDb.adult,
     backdropPath: (tvDb.backdropPath != '')
-        ? 'https://image.tmdb.org/t/p/w500${tvDb.backdropPath}'
+        ? '${TmdbImage.baseUrlW500}${tvDb.backdropPath}'
         : ImagePlaceholders.posterNotFound,
     genreIds: [...tvDb.genreIds.map((genreId) => genreId.toString())],
     id: tvDb.id,
@@ -17,8 +18,8 @@ class TvMapper {
     overview: tvDb.overview,
     popularity: tvDb.popularity,
     posterPath: (tvDb.posterPath != '')
-        ? 'https://image.tmdb.org/t/p/w500${tvDb.posterPath}'
-        : 'no-poster',
+        ? '${TmdbImage.baseUrlW500}${tvDb.posterPath}'
+        : ImagePlaceholders.posterNotFound,
     firstAirDate: tvDb.firstAirDate,
     name: tvDb.name,
     voteAverage: tvDb.voteAverage,
@@ -31,7 +32,7 @@ class TvMapper {
   static TvShow tvDetailsToEntity(TvDetails tvDb) => TvShow(
     adult: tvDb.adult,
     backdropPath: (tvDb.backdropPath != '')
-        ? 'https://image.tmdb.org/t/p/w500${tvDb.backdropPath}'
+        ? '${TmdbImage.baseUrlW500}${tvDb.backdropPath}'
         : ImagePlaceholders.posterNotFound,
     genreIds: [...(tvDb.genres ?? []).map((genre) => genre.name ?? '')],
     id: tvDb.id,
@@ -40,7 +41,7 @@ class TvMapper {
     overview: tvDb.overview,
     popularity: tvDb.popularity,
     posterPath: (tvDb.posterPath != null && tvDb.posterPath != '')
-        ? 'https://image.tmdb.org/t/p/w500${tvDb.posterPath}'
+        ? '${TmdbImage.baseUrlW500}${tvDb.posterPath}'
         : ImagePlaceholders.posterNotFound,
     firstAirDate: tvDb.firstAirDate,
     name: tvDb.name,
@@ -64,7 +65,7 @@ class TvMapper {
       seasonNumber: latest.seasonNumber,
       name: latest.name,
       posterPath: (latest.posterPath != null && latest.posterPath != '')
-          ? 'https://image.tmdb.org/t/p/w500${latest.posterPath}'
+          ? '${TmdbImage.baseUrlW500}${latest.posterPath}'
           : ImagePlaceholders.posterNotFound,
       airDate: latest.airDate,
       episodeCount: latest.episodeCount,
