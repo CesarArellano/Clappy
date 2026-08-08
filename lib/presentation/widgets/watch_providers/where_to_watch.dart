@@ -189,10 +189,10 @@ class _ProviderLogoChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         child: AppNetworkImage(
           imageUrl: provider.logoPath,
-          width: 40,
-          height: 40,
-          cacheWidth: 40,
-          cacheHeight: 40,
+          width: 60,
+          height: 60,
+          cacheWidth: 60,
+          cacheHeight: 60,
         ),
       ),
     );
