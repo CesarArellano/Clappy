@@ -553,6 +553,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Español'**
   String get spanishLabel;
+
+  /// No description provided for @whereToWatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Where to Watch'**
+  String get whereToWatch;
+
+  /// No description provided for @streamOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Stream'**
+  String get streamOn;
+
+  /// No description provided for @rentOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Rent'**
+  String get rentOn;
+
+  /// No description provided for @buyOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy'**
+  String get buyOn;
+
+  /// No description provided for @watchFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get watchFree;
+
+  /// No description provided for @watchWithAds.
+  ///
+  /// In en, this message translates to:
+  /// **'Free with Ads'**
+  String get watchWithAds;
+
+  /// No description provided for @moreWatchOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'More watch options'**
+  String get moreWatchOptions;
+
+  /// No description provided for @watchRegionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch region'**
+  String get watchRegionLabel;
+
+  /// No description provided for @regionUs.
+  ///
+  /// In en, this message translates to:
+  /// **'United States'**
+  String get regionUs;
+
+  /// No description provided for @regionMx.
+  ///
+  /// In en, this message translates to:
+  /// **'Mexico'**
+  String get regionMx;
+
+  /// No description provided for @regionEs.
+  ///
+  /// In en, this message translates to:
+  /// **'Spain'**
+  String get regionEs;
+
+  /// No description provided for @regionGb.
+  ///
+  /// In en, this message translates to:
+  /// **'United Kingdom'**
+  String get regionGb;
+
+  /// No description provided for @regionCa.
+  ///
+  /// In en, this message translates to:
+  /// **'Canada'**
+  String get regionCa;
+
+  /// No description provided for @regionAr.
+  ///
+  /// In en, this message translates to:
+  /// **'Argentina'**
+  String get regionAr;
+
+  /// No description provided for @regionBr.
+  ///
+  /// In en, this message translates to:
+  /// **'Brazil'**
+  String get regionBr;
+
+  /// No description provided for @regionFr.
+  ///
+  /// In en, this message translates to:
+  /// **'France'**
+  String get regionFr;
+
+  /// No description provided for @regionDe.
+  ///
+  /// In en, this message translates to:
+  /// **'Germany'**
+  String get regionDe;
+
+  /// No description provided for @regionIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Italy'**
+  String get regionIt;
 }
 
 class _AppLocalizationsDelegate

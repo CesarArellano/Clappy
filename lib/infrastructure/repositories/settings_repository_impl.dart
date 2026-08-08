@@ -1,5 +1,6 @@
 import '../../domain/entities/app_language.dart';
 import '../../domain/entities/theme_preference.dart';
+import '../../domain/entities/watch_region.dart';
 import '../../domain/repositories/settings_repository.dart';
 import '../datasources/shared_preferences_datasource.dart';
 
@@ -25,5 +26,15 @@ class SettingsRepositoryImpl implements SettingsRepository {
   @override
   Future<void> setAppLanguage(AppLanguage language) {
     return datasource.setAppLanguage(language);
+  }
+
+  @override
+  Future<WatchRegion> getWatchRegion() {
+    return datasource.getWatchRegion();
+  }
+
+  @override
+  Future<void> setWatchRegion(WatchRegion region) {
+    return datasource.setWatchRegion(region);
   }
 }

@@ -85,5 +85,24 @@
   "darkLabel": "Oscuro",
   "systemLabel": "Sistema",
   "englishLabel": "English",
-  "spanishLabel": "Español"
+  "spanishLabel": "Español",
+
+  "whereToWatch": "Dónde ver",
+  "streamOn": "Suscripción",
+  "rentOn": "Alquiler",
+  "buyOn": "Compra",
+  "watchFree": "Gratis",
+  "watchWithAds": "Gratis con anuncios",
+  "moreWatchOptions": "Más opciones para ver",
+  "watchRegionLabel": "Región de streaming",
+  "regionUs": "Estados Unidos",
+  "regionMx": "México",
+  "regionEs": "España",
+  "regionGb": "Reino Unido",
+  "regionCa": "Canadá",
+  "regionAr": "Argentina",
+  "regionBr": "Brasil",
+  "regionFr": "Francia",
+  "regionDe": "Alemania",
+  "regionIt": "Italia"
 }

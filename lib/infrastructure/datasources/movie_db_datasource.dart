@@ -3,16 +3,20 @@ import '../../config/network/network_service.dart';
 import '../../domain/datasources/movies_datasource.dart';
 import '../../domain/entities/movie.dart';
 import '../../domain/entities/video.dart';
+import '../../domain/entities/watch_providers.dart';
 import '../mappers/movie_mapper.dart';
 import '../mappers/video_mapper.dart';
+import '../mappers/watch_providers_mapper.dart';
 import '../models/moviedb/movie_details.dart';
 import '../models/moviedb/moviedb_response.dart';
 import '../models/moviedb/moviedb_videos.dart';
+import '../models/moviedb/moviedb_watch_providers.dart';
 
 class MovieDbDatasource implements MoviesDatasource {
-  MovieDbDatasource(this.networkService);
+  MovieDbDatasource(this.networkService, {required this.regionCode});
 
   final NetworkService networkService;
+  final String regionCode;
 
   List<Movie> _jsonToMovies(Map<String, dynamic> json) {
     final MovieDbResponse movieDbResponse = MovieDbResponse.fromJson(json);
@@ -112,5 +116,15 @@ class MovieDbDatasource implements MoviesDatasource {
     }
 
     return videos;
+  }
+
+  @override
+  Future<WatchProviders> getWatchProviders(int movieId) async {
+    final response = await networkService.get(
+      '/movie/$movieId/watch/providers',
+    );
+    final parsed = MoviedbWatchProvidersResponse.fromJson(response.data);
+
+    return WatchProvidersMapper.fromResponse(parsed, regionCode);
   }
 }

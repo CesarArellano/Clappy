@@ -3,10 +3,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../domain/datasources/settings_datasource.dart';
 import '../../domain/entities/app_language.dart';
 import '../../domain/entities/theme_preference.dart';
+import '../../domain/entities/watch_region.dart';
 
 class SharedPreferencesDatasource implements SettingsDatasource {
   static const _themePreferenceKey = 'theme_preference';
   static const _appLanguageKey = 'app_language';
+  static const _watchRegionKey = 'watch_region';
 
   @override
   Future<ThemePreference> getThemePreference() async {
@@ -40,5 +42,22 @@ class SharedPreferencesDatasource implements SettingsDatasource {
   Future<void> setAppLanguage(AppLanguage language) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_appLanguageKey, language.name);
+  }
+
+  @override
+  Future<WatchRegion> getWatchRegion() async {
+    final prefs = await SharedPreferences.getInstance();
+    final value = prefs.getString(_watchRegionKey);
+
+    return WatchRegion.values.firstWhere(
+      (region) => region.name == value,
+      orElse: () => WatchRegion.us,
+    );
+  }
+
+  @override
+  Future<void> setWatchRegion(WatchRegion region) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_watchRegionKey, region.name);
   }
 }

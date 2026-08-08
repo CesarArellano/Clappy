@@ -14,4 +14,6 @@ abstract class SeriesRepository {
   Future<List<Actor>> getCastBySeries(String seriesId);
 
   Future<List<TvShow>> searchSeries(String query);
+
+  Future<WatchProviders> getWatchProviders(int seriesId);
 }

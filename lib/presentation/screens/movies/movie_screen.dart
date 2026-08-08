@@ -160,6 +160,8 @@ class _MovieDetails extends StatelessWidget {
         const SizedBox(height: 8),
         VideosFromMovie(movieId: movie.id.nonNullValue()),
         const SizedBox(height: 4),
+        WhereToWatchMovie(movieId: movie.id.nonNullValue()),
+        const SizedBox(height: 4),
         SimilarMovies(movieId: movie.id.nonNullValue()),
         const SizedBox(height: 12),
       ],

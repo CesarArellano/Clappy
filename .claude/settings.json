@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/cesararellano/.pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2/lib/src/**)",
+      "Bash(find /Users/cesararellano/.pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2 -iname \"*link*\")",
+      "Read(//Users/cesararellano/.pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2/**)",
+      "Bash(flutter devices *)",
+      "Bash(xcrun simctl *)",
+      "Bash(tail -80 /tmp/flutter_run.log)",
+      "Read(//private/tmp/**)",
+      "Bash(pkill -f \"flutter run\")",
+      "Bash(pkill -f \"xcodebuild.*Runner.xcworkspace\")"
+    ]
+  }
+}

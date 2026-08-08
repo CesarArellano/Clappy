@@ -14,6 +14,7 @@ export 'search/searched_series_provider.dart';
 export 'settings/app_language_provider.dart';
 export 'settings/settings_repository_provider.dart';
 export 'settings/theme_preference_provider.dart';
+export 'settings/watch_region_provider.dart';
 export 'series/series_cast_provider.dart';
 export 'series/series_info_provider.dart';
 export 'series/series_providers.dart';

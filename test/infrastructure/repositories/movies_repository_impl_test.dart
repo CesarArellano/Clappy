@@ -1,4 +1,5 @@
 import 'package:clappy/domain/entities/movie.dart';
+import 'package:clappy/domain/entities/watch_providers.dart';
 import 'package:clappy/infrastructure/datasources/movie_db_datasource.dart';
 import 'package:clappy/infrastructure/repositories/movies_repository_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -122,4 +123,16 @@ void main() {
       verify(() => datasource.getYoutubeVideosById(42)).called(1);
     },
   );
+
+  test('getWatchProviders delegates to datasource.getWatchProviders', () async {
+    final watchProviders = WatchProviders(link: null, categories: const {});
+    when(
+      () => datasource.getWatchProviders(42),
+    ).thenAnswer((_) async => watchProviders);
+
+    final result = await repository.getWatchProviders(42);
+
+    expect(result, watchProviders);
+    verify(() => datasource.getWatchProviders(42)).called(1);
+  });
 }

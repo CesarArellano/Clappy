@@ -244,4 +244,58 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get spanishLabel => 'Español';
+
+  @override
+  String get whereToWatch => 'Dónde ver';
+
+  @override
+  String get streamOn => 'Suscripción';
+
+  @override
+  String get rentOn => 'Alquiler';
+
+  @override
+  String get buyOn => 'Compra';
+
+  @override
+  String get watchFree => 'Gratis';
+
+  @override
+  String get watchWithAds => 'Gratis con anuncios';
+
+  @override
+  String get moreWatchOptions => 'Más opciones para ver';
+
+  @override
+  String get watchRegionLabel => 'Región de streaming';
+
+  @override
+  String get regionUs => 'Estados Unidos';
+
+  @override
+  String get regionMx => 'México';
+
+  @override
+  String get regionEs => 'España';
+
+  @override
+  String get regionGb => 'Reino Unido';
+
+  @override
+  String get regionCa => 'Canadá';
+
+  @override
+  String get regionAr => 'Argentina';
+
+  @override
+  String get regionBr => 'Brasil';
+
+  @override
+  String get regionFr => 'Francia';
+
+  @override
+  String get regionDe => 'Alemania';
+
+  @override
+  String get regionIt => 'Italia';
 }

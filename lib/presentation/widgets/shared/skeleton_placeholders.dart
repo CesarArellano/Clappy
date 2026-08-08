@@ -254,6 +254,35 @@ class VideoSkeleton extends StatelessWidget {
   }
 }
 
+class WatchProvidersSkeleton extends StatelessWidget {
+  const WatchProvidersSkeleton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Skeletonizer.zone(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Bone.text(fontSize: 22, width: 140),
+            const SizedBox(height: 12),
+            Row(
+              children: List.generate(
+                5,
+                (index) => const Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: Bone(width: 40, height: 40, uniRadius: 8),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class DetailScreenSkeleton extends StatelessWidget {
   const DetailScreenSkeleton({super.key, this.heroHeightFactor = 0.7});
 

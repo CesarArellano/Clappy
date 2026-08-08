@@ -3,16 +3,20 @@ import '../../config/network/network_service.dart';
 import '../../domain/datasources/series_datasource.dart';
 import '../../domain/entities/actor.dart';
 import '../../domain/entities/tv_show.dart';
+import '../../domain/entities/watch_providers.dart';
 import '../mappers/actor_mapper.dart';
 import '../mappers/tv_mapper.dart';
+import '../mappers/watch_providers_mapper.dart';
 import '../models/moviedb/credits_reponse.dart';
+import '../models/moviedb/moviedb_watch_providers.dart';
 import '../models/moviedb/tv_details.dart';
 import '../models/moviedb/tv_moviedb.dart';
 
 class TvMovieDbDatasource implements SeriesDatasource {
-  TvMovieDbDatasource(this.networkService);
+  TvMovieDbDatasource(this.networkService, {required this.regionCode});
 
   final NetworkService networkService;
+  final String regionCode;
 
   List<TvShow> _jsonToTvShows(Map<String, dynamic> json) {
     final TvMovieDbResponse tvDbResponse = TvMovieDbResponse.fromJson(json);
@@ -99,5 +103,13 @@ class TvMovieDbDatasource implements SeriesDatasource {
     );
 
     return _jsonToTvShows(response.data);
+  }
+
+  @override
+  Future<WatchProviders> getWatchProviders(int seriesId) async {
+    final response = await networkService.get('/tv/$seriesId/watch/providers');
+    final parsed = MoviedbWatchProvidersResponse.fromJson(response.data);
+
+    return WatchProvidersMapper.fromResponse(parsed, regionCode);
   }
 }

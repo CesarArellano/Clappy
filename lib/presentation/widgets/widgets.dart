@@ -20,3 +20,4 @@ export 'package:clappy/presentation/widgets/shared/cast_card.dart';
 export 'package:clappy/presentation/widgets/shared/skeleton_placeholders.dart';
 export 'package:clappy/presentation/widgets/shared/top_edge_blur.dart';
 export 'package:clappy/presentation/widgets/videos/videos_from_movie.dart';
+export 'package:clappy/presentation/widgets/watch_providers/where_to_watch.dart';

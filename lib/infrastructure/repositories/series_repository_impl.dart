@@ -1,5 +1,6 @@
 import '../../domain/entities/actor.dart';
 import '../../domain/entities/tv_show.dart';
+import '../../domain/entities/watch_providers.dart';
 import '../../domain/repositories/series_repository.dart';
 import '../datasources/tv_moviedb_datasource.dart';
 
@@ -41,5 +42,10 @@ class SeriesRepositoryImpl implements SeriesRepository {
   @override
   Future<List<TvShow>> searchSeries(String query) {
     return datasource.searchSeries(query);
+  }
+
+  @override
+  Future<WatchProviders> getWatchProviders(int seriesId) {
+    return datasource.getWatchProviders(seriesId);
   }
 }

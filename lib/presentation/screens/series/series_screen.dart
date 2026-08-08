@@ -228,6 +228,8 @@ class _SeriesDetails extends StatelessWidget {
         _MoreDetails(series: series),
         _SeriesCast(seriesId: series.id.toString()),
         if (series.lastSeason != null) _LastSeason(season: series.lastSeason!),
+        const SizedBox(height: 4),
+        WhereToWatchSeries(seriesId: series.id.nonNullValue()),
         const SizedBox(height: 12),
       ],
     );

@@ -1,5 +1,6 @@
 import '../../domain/entities/movie.dart';
 import '../../domain/entities/video.dart';
+import '../../domain/entities/watch_providers.dart';
 import '../../domain/repositories/movies_repository.dart';
 import '../datasources/movie_db_datasource.dart';
 
@@ -46,5 +47,10 @@ class MoviesRepositoryImpl implements MoviesRepository {
   @override
   Future<List<Video>> getYoutubeVideosById(int movieId) {
     return datasource.getYoutubeVideosById(movieId);
+  }
+
+  @override
+  Future<WatchProviders> getWatchProviders(int movieId) {
+    return datasource.getWatchProviders(movieId);
   }
 }

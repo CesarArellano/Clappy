@@ -7,3 +7,5 @@ export 'package:clappy/domain/entities/theme_preference.dart';
 export 'package:clappy/domain/entities/tv_season.dart';
 export 'package:clappy/domain/entities/tv_show.dart';
 export 'package:clappy/domain/entities/video.dart';
+export 'package:clappy/domain/entities/watch_providers.dart';
+export 'package:clappy/domain/entities/watch_region.dart';
